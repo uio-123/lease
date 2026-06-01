@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.lease.web.app.mapper.RoomInfoMapper">
+
+    <select id="selectMinRentByApartmentId" resultType="java.math.BigDecimal">
+        SELECT MIN(rent)
+        FROM room_info
+        WHERE is_deleted = 0
+          AND is_release = 1
+          AND apartment_id = #{apartmentId}
+    </select>
+
+    <select id="selectPageByQuery" resultType="com.atguigu.lease.web.app.vo.room.RoomItemVo">
+        SELECT ri.id,
+               ri.room_number,
+               ri.rent,
+               ri.apartment_id,
+               ai.name         AS apartment_name,
+               ai.district_id,
+               ai.district_name,
+               ai.city_id,
+               ai.city_name,
+               ai.province_id,
+               ai.province_name,
+               ai.address_detail,
+               ai.latitude,
+               ai.longitude
+        FROM room_info ri
+                 LEFT JOIN apartment_info ai ON ri.apartment_id = ai.id AND ai.is_deleted = 0 AND ai.is_release = 1
+        WHERE ri.is_deleted = 0
+          AND ri.is_release = 1
+        <if test="queryVo.provinceId != null">
+            AND ai.province_id = #{queryVo.provinceId}
+        </if>
+        <if test="queryVo.cityId != null">
+            AND ai.city_id = #{queryVo.cityId}
+        </if>
+        <if test="queryVo.districtId != null">
+            AND ai.district_id = #{queryVo.districtId}
+        </if>
+        <if test="queryVo.apartmentId != null">
+            AND ri.apartment_id = #{queryVo.apartmentId}
+        </if>
+        <if test="queryVo.minRent != null">
+            AND ri.rent &gt;= #{queryVo.minRent}
+        </if>
+        <if test="queryVo.maxRent != null">
+            AND ri.rent &lt;= #{queryVo.maxRent}
+        </if>
+        ORDER BY ri.id DESC
+    </select>
+
+    <select id="selectPageByApartmentId" resultType="com.atguigu.lease.web.app.vo.room.RoomItemVo">
+        SELECT ri.id,
+               ri.room_number,
+               ri.rent,
+               ri.apartment_id,
+               ai.name         AS apartment_name,
+               ai.district_id,
+               ai.district_name,
+               ai.city_id,
+               ai.city_name,
+               ai.province_id,
+               ai.province_name,
+               ai.address_detail,
+               ai.latitude,
+               ai.longitude
+        FROM room_info ri
+                 LEFT JOIN apartment_info ai ON ri.apartment_id = ai.id AND ai.is_deleted = 0
+        WHERE ri.is_deleted = 0
+          AND ri.is_release = 1
+          AND ri.apartment_id = #{apartmentId}
+        ORDER BY ri.id DESC
+    </select>
+</mapper>

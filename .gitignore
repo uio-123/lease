@@ -1,0 +1,55 @@
+# Dependencies
+node_modules/
+.pnp/
+.pnp.js
+
+# Build outputs
+dist/
+build/
+target/
+out/
+coverage/
+
+# TypeScript / Vite cache
+*.tsbuildinfo
+vite.config.ts.timestamp-*.mjs
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment files
+.env
+.env.*
+!.env.example
+!.env.sample
+
+# Java / Maven
+*.class
+.mvn/timing.properties
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+
+# OS files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Office temporary files
+~$*
+
+# Local runtime bundles
+nginx-1.18.0/
+
+# Nested repository metadata
+**/.git/

@@ -1,0 +1,213 @@
+.room-detail-page {
+  padding-bottom: 70px;
+  background: #f5f5f5;
+}
+
+.room-swiper {
+  height: 300px;
+}
+
+.room-img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.room-content {
+  padding: 16px;
+  background: white;
+  margin: -20px 16px 0;
+  border-radius: 20px 20px 0 0;
+  position: relative;
+  z-index: 10;
+}
+
+.room-header {
+  margin-bottom: 12px;
+}
+
+.room-number {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+
+.room-apartment {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #666;
+  font-size: 14px;
+}
+
+.room-apartment .icon {
+  width: 14px;
+  height: 14px;
+  color: #1890ff;
+}
+
+.room-price {
+  margin-bottom: 16px;
+}
+
+.room-price .price {
+  font-size: 28px;
+  color: #ff4d4f;
+  font-weight: 700;
+}
+
+.room-price .unit {
+  font-size: 14px;
+  color: #999;
+}
+
+.room-section {
+  padding: 16px 0;
+  border-top: 1px solid #f0f0f0;
+}
+
+.room-section h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 12px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  background: #f0f9ff;
+  color: #1890ff;
+  border-radius: 16px;
+  font-size: 13px;
+}
+
+.tag-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.attributes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.attr-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: #fafafa;
+  border-radius: 8px;
+}
+
+.attr-name {
+  color: #999;
+  font-size: 13px;
+}
+
+.attr-value {
+  color: #333;
+  font-size: 13px;
+}
+
+.facilities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.facility-tag {
+  padding: 4px 10px;
+  background: #f5f5f5;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #666;
+}
+
+.select-section {
+  padding: 16px 0;
+  border-top: 1px solid #f0f0f0;
+}
+
+.select-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+}
+
+.select-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+}
+
+.label-icon {
+  width: 18px;
+  height: 18px;
+  color: #1890ff;
+}
+
+.select-trigger {
+  padding: 6px 12px;
+  background: #f5f5f5;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #666;
+}
+
+.sign-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: white;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.total-price {
+  display: flex;
+  flex-direction: column;
+}
+
+.total-price .label {
+  font-size: 12px;
+  color: #999;
+}
+
+.total-price .price {
+  font-size: 22px;
+  color: #ff4d4f;
+  font-weight: 700;
+}
+
+.sign-btn {
+  width: 160px;
+  border-radius: 24px;
+}
+
+.no-data {
+  color: #999;
+  font-size: 14px;
+}
+
+.loading, .empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #999;
+}

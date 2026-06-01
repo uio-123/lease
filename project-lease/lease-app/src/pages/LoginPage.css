@@ -1,0 +1,49 @@
+.login-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+
+.login-header {
+  text-align: center;
+  color: white;
+  margin-bottom: 40px;
+}
+
+.login-header h1 {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.login-header p {
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+.login-card {
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.code-input {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.code-input .adm-input {
+  flex: 1;
+}
+
+.login-btn {
+  margin-top: 24px;
+  border-radius: 8px;
+}
+
+.input-icon {
+  color: #999;
+  margin-right: 8px;
+}
