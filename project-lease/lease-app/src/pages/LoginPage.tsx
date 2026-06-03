@@ -68,25 +68,29 @@ export default function LoginPage() {
       <Card className="login-card">
         <Form layout="vertical">
           <Form.Item label="手机号">
-            <Input
-              type="phone"
-              placeholder="请输入手机号"
-              value={phone}
-              onChange={(val) => setPhone(val)}
-              prefix={<Phone className="input-icon" />}
-              clearable
-            />
+            <div className="input-with-icon">
+              <Phone className="input-icon" />
+              <Input
+                type="phone"
+                placeholder="请输入手机号"
+                value={phone}
+                onChange={(val) => setPhone(val)}
+                clearable
+              />
+            </div>
           </Form.Item>
           <Form.Item label="验证码">
             <div className="code-input">
-              <Input
-                type="number"
-                placeholder="请输入验证码"
-                value={code}
-                onChange={(val) => setCode(val)}
-                prefix={<Lock className="input-icon" />}
-                clearable
-              />
+              <div className="input-with-icon">
+                <Lock className="input-icon" />
+                <Input
+                  type="number"
+                  placeholder="请输入验证码"
+                  value={code}
+                  onChange={(val) => setCode(val)}
+                  clearable
+                />
+              </div>
               <Button
                 size="small"
                 onClick={handleGetCode}

@@ -5,7 +5,7 @@
         <span>配套信息管理</span>
       </div>
     </template>
-    <el-row class="container" v-for="item in facilityTypeList" :key="item">
+    <el-row class="container" v-for="item in facilityTypeList" :key="item.value">
       <el-col :span="2" class="text-center">{{ item.label }}配套</el-col>
       <el-col :span="22" class="item-container">
         <el-popconfirm

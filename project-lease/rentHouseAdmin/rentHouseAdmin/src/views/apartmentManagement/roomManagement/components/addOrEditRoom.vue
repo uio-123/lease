@@ -17,7 +17,7 @@
         <el-input v-model="formData.roomNumber" />
       </el-form-item>
       <el-form-item label="租金（元/月）" prop="rent">
-        <el-input-number v-model="formData.rent" :step="1" step-strictly />
+        <el-input-number :model-value="Number(formData.rent)" @update:model-value="formData.rent = ($event == null ? 0 : $event)" :step="1" step-strictly />
       </el-form-item>
       <el-form-item label="所属公寓" required>
         <div class="flex-center">

@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { MapPin, Calendar, Banknote, CheckCircle, ArrowLeft } from 'lucide-react';
 import { Swiper, Toast, Picker, Button } from 'antd-mobile';
-import { getRoomDetailById, getPaymentTypeListByRoomId, getLeaseTermListByRoomId, saveOrUpdateAgreement } from '@/api';
+import { getRoomDetailById, getPaymentTypeListByRoomId, getLeaseTermListByRoomId, saveOrUpdateAgreement, saveBrowsingHistory } from '@/api';
 import type { RoomDetailVo, PaymentType, LeaseTerm } from '@/types';
 import './RoomDetailPage.css';
 
@@ -16,42 +16,44 @@ export default function RoomDetailPage() {
   const [selectedTerm, setSelectedTerm] = useState<LeaseTerm | null>(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (id) {
-      loadRoomDetail();
-      loadPaymentTypes();
-      loadLeaseTerms();
-    }
-  }, [id]);
-
-  const loadRoomDetail = async () => {
+  const loadRoomDetail = useCallback(async () => {
+    if (!id) return;
     try {
       const res = await getRoomDetailById(Number(id));
       setRoom(res.data);
+      saveBrowsingHistory(Number(id)).catch(() => {});
     } catch {
       Toast.show('加载房间详情失败');
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
 
-  const loadPaymentTypes = async () => {
+  const loadPaymentTypes = useCallback(async () => {
+    if (!id) return;
     try {
       const res = await getPaymentTypeListByRoomId(Number(id));
       setPaymentTypes(res.data || []);
     } catch {
       Toast.show('加载支付方式失败');
     }
-  };
+  }, [id]);
 
-  const loadLeaseTerms = async () => {
+  const loadLeaseTerms = useCallback(async () => {
+    if (!id) return;
     try {
       const res = await getLeaseTermListByRoomId(Number(id));
       setLeaseTerms(res.data || []);
     } catch {
       Toast.show('加载租期失败');
     }
-  };
+  }, [id]);
+
+  useEffect(() => {
+    loadRoomDetail();
+    loadPaymentTypes();
+    loadLeaseTerms();
+  }, [loadRoomDetail, loadPaymentTypes, loadLeaseTerms]);
 
   const handleSignAgreement = async () => {
     if (!selectedPayment || !selectedTerm) {
@@ -63,7 +65,7 @@ export default function RoomDetailPage() {
         roomId: Number(id),
         leaseStartDate: new Date().toISOString().split('T')[0],
         leaseEndDate: new Date(Date.now() + selectedTerm.count * 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-        leaseStatus: 'SIGNING' as any,
+        leaseStatus: 'SIGNING',
       });
       Toast.show('签约成功');
       navigate('/agreements');
@@ -172,8 +174,8 @@ export default function RoomDetailPage() {
             </div>
             <Picker
               columns={[paymentOptions]}
-              value={selectedPayment?.id?.toString()}
-              onChange={(val) => {
+              value={selectedPayment ? [selectedPayment.id.toString()] : []}
+              onConfirm={(val) => {
                 const payment = paymentTypes.find((p) => p.id.toString() === val?.[0]);
                 setSelectedPayment(payment || null);
               }}
@@ -193,8 +195,8 @@ export default function RoomDetailPage() {
             </div>
             <Picker
               columns={[termOptions]}
-              value={selectedTerm?.id?.toString()}
-              onChange={(val) => {
+              value={selectedTerm ? [selectedTerm.id.toString()] : []}
+              onConfirm={(val) => {
                 const term = leaseTerms.find((t) => t.id.toString() === val?.[0]);
                 setSelectedTerm(term || null);
               }}

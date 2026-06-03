@@ -27,12 +27,9 @@ import { computed, ref } from 'vue'
 import { AttrValueInfoInterface } from '@/api/apartmentManagement/types'
 import { ElMessage, FormInstance, FormRules } from 'element-plus'
 import { saveOrUpdateAttrKey } from '@/api/apartmentManagement'
-const props = defineProps({
-  updateRoomBaseAddOrEditAttr: {
-    type: Function,
-    default: () => ({}),
-  },
-})
+const props = defineProps<{
+  updateRoomBaseAddOrEditAttr: () => Promise<void>
+}>()
 const defaultFormData = {
   id: '',
   name: '',

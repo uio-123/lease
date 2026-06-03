@@ -163,10 +163,10 @@
         </el-select>
       </el-form-item>
       <el-form-item label="租金（元/月）" prop="rent">
-        <el-input-number v-model="formData.rent" :step="1" step-strictly />
+        <el-input-number :model-value="Number(formData.rent)" @update:model-value="formData.rent = ($event == null ? 0 : $event)" :step="1" step-strictly />
       </el-form-item>
       <el-form-item label="押金（元）" prop="deposit">
-        <el-input-number v-model="formData.deposit" :step="1" step-strictly />
+        <el-input-number :model-value="Number(formData.deposit)" @update:model-value="formData.deposit = ($event == null ? 0 : $event)" :step="1" step-strictly />
       </el-form-item>
       <el-form-item label="备注信息" prop="additionalInfo">
         <el-input

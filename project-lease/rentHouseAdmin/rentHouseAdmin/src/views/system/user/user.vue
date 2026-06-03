@@ -35,6 +35,14 @@
         <el-button
           type="primary"
           link
+          icon="UserFilled"
+          @click="openDrawer('分配角色', scope.row)"
+        >
+          分配角色
+        </el-button>
+        <el-button
+          type="primary"
+          link
           icon="Delete"
           @click="handleDelete(scope.row)"
         >
@@ -89,9 +97,16 @@ const openDrawer = async (
   title: string,
   rowData: Partial<SysUserInterfaceRes> = {} as SysUserInterfaceRes,
 ) => {
+  let list: any = undefined
+  // 分配角色时先获取角色列表
+  if (title === '分配角色') {
+    const res = await getUserRolesListByUserId(rowData.id!)
+    list = { data: res.data }
+  }
   let params = {
     title,
     rowData: { ...rowData },
+    list,
     api:
       title === '新增'
         ? addSysUser

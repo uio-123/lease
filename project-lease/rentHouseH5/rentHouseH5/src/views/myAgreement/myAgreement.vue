@@ -144,7 +144,7 @@
       </van-card>
     </div>
 
-    <van-empty v-if="agreementList?.length <= 0" description="搜索不到" />
+    <van-empty v-if="!agreementList || agreementList.length <= 0" description="搜索不到" />
   </van-skeleton>
 </template>
 <script setup lang="ts">

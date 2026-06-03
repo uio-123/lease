@@ -15,7 +15,8 @@
       </el-form-item>
       <el-form-item label="每次支付月数" prop="payMonthCount">
         <el-input-number
-          v-model.trim="formData.payMonthCount"
+          :model-value="Number(formData.payMonthCount)"
+          @update:model-value="formData.payMonthCount = ($event == null ? 1 : $event)"
           :min="1"
           step-strictly
           placeholder="请输入，例：3"

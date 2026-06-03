@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MapPin, Calendar, Banknote } from 'lucide-react';
+import { Calendar, Banknote } from 'lucide-react';
 import { Tabs, Toast } from 'antd-mobile';
 import { getAgreementList, updateAgreementStatus } from '@/api';
-import type { AgreementItemVo, LeaseStatus } from '@/types';
+import type { AgreementItemVo } from '@/types';
 import './AgreementListPage.css';
 
 const statusMap: Record<string, { color: string; label: string }> = {

@@ -32,11 +32,11 @@ export const getApartmentListByQuery = (params: {
   });
 };
 
-// 保存浏览历史
-export const saveBrowsingHistory = (apartmentId: number) => {
+// 保存浏览历史（房间维度）
+export const saveBrowsingHistory = (roomId: number) => {
   return request({
     url: '/history/save',
     method: 'post',
-    params: { apartmentId },
+    params: { roomId },
   });
 };

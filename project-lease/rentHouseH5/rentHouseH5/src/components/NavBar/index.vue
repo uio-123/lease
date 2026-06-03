@@ -1,7 +1,7 @@
 <template>
   <van-nav-bar
     v-if="isShowNavBar"
-    :title="route.meta.title || ''"
+    :title="String(route.meta.title ?? '')"
     fixed
     placeholder
     left-arrow

@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, MapPin, Calendar, FileText, Clock } from 'lucide-react';
-import { Swiper, Toast } from 'antd-mobile';
+import { Swiper, Toast, Picker } from 'antd-mobile';
+import type { PickerValue } from 'antd-mobile/es/components/picker-view';
 import { getProvinceList, getCityListByProvinceId, getDistrictListByCityId, getApartmentListByQuery } from '@/api';
 import type { ProvinceInfo, CityInfo, DistrictInfo, ApartmentItemVo } from '@/types';
-import { Picker } from 'antd-mobile';
 import './HomePage.css';
 
 const districtNames: Record<number, string> = {};
@@ -121,6 +121,16 @@ export default function HomePage() {
     value: d.id.toString(),
   }));
 
+  const handlePickerConfirm = (val: PickerValue[]) => {
+    const [provinceId, cityId, districtId] = val || [];
+    const province = provinces.find((p) => p.id.toString() === provinceId);
+    const city = cities.find((c) => c.id.toString() === cityId);
+    const district = districts.find((d) => d.id.toString() === districtId);
+    setSelectedProvince(province || null);
+    setSelectedCity(city || null);
+    setSelectedDistrict(district || null);
+  };
+
   return (
     <div className="home-page">
       <div className="search-bar">
@@ -129,19 +139,11 @@ export default function HomePage() {
           <Picker
             columns={[provinceOptions, cityOptions, districtOptions]}
             value={[
-              selectedProvince?.id?.toString(),
-              selectedCity?.id?.toString(),
-              selectedDistrict?.id?.toString(),
-            ].filter(Boolean) as string[]}
-            onChange={(val) => {
-              const [provinceId, cityId, districtId] = val || [];
-              const province = provinces.find((p) => p.id.toString() === provinceId);
-              const city = cities.find((c) => c.id.toString() === cityId);
-              const district = districts.find((d) => d.id.toString() === districtId);
-              setSelectedProvince(province || null);
-              setSelectedCity(city || null);
-              setSelectedDistrict(district || null);
-            }}
+              selectedProvince?.id?.toString() || '',
+              selectedCity?.id?.toString() || '',
+              selectedDistrict?.id?.toString() || '',
+            ]}
+            onConfirm={handlePickerConfirm}
           >
             {(items) => (
               <div className="picker-trigger">

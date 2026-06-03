@@ -1,7 +1,6 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { TabBar } from 'antd-mobile';
 import { Home, FileText, Calendar, User } from 'lucide-react';
-import { useState } from 'react';
 import { useAuthStore } from '@/store/auth';
 import {
   LoginPage,
@@ -23,12 +22,7 @@ const tabItems = [
 ];
 
 function App() {
-  const [activeTab, setActiveTab] = useState('/');
   const { token } = useAuthStore();
-
-  const isAuthPage = (path: string) => ['/login'].includes(path);
-
-  const showTabBar = !isAuthPage(activeTab) && token;
 
   return (
     <BrowserRouter
@@ -43,45 +37,31 @@ function App() {
           path="/*"
           element={
             token ? (
-              <MainLayout activeTab={activeTab} onTabChange={setActiveTab} />
+              <MainLayout />
             ) : (
               <Navigate to="/login" replace />
             )
           }
-        >
-          <Route index element={<HomePage />} />
-          <Route path="apartment/:id" element={<ApartmentDetailPage />} />
-          <Route path="room/:id" element={<RoomDetailPage />} />
-          <Route path="appointments" element={<AppointmentListPage />} />
-          <Route path="agreements" element={<AgreementListPage />} />
-          <Route path="history" element={<HistoryPage />} />
-          <Route path="profile" element={<ProfilePage />} />
-        </Route>
+        />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-      {showTabBar && (
-        <TabBar className="tab-bar" onChange={(key) => setActiveTab(key)}>
-          {tabItems.map((item) => (
-            <TabBar.Item key={item.key} icon={item.icon} title={item.title} />
-          ))}
-        </TabBar>
-      )}
     </BrowserRouter>
   );
 }
 
-function MainLayout({
-  activeTab,
-  onTabChange,
-}: {
-  activeTab: string;
-  onTabChange: (key: string) => void;
-}) {
+function MainLayout() {
+  const navigate = useNavigate();
+  const location = useLocation();
   const { token } = useAuthStore();
 
   if (!token) {
     return <Navigate to="/login" replace />;
   }
+
+  // 从当前 pathname 推导活跃 tab
+  const activeKey = tabItems.some((item) => item.key === location.pathname)
+    ? location.pathname
+    : '/';
 
   return (
     <div className="main-layout">
@@ -96,7 +76,11 @@ function MainLayout({
           <Route path="profile" element={<ProfilePage />} />
         </Routes>
       </div>
-      <TabBar className="tab-bar" activeKey={activeTab} onChange={onTabChange}>
+      <TabBar
+        className="tab-bar"
+        activeKey={activeKey}
+        onChange={(key) => navigate(key)}
+      >
         {tabItems.map((item) => (
           <TabBar.Item key={item.key} icon={item.icon} title={item.title} />
         ))}

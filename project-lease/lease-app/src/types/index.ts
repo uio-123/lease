@@ -171,12 +171,7 @@ export interface AppointmentDetailVo extends AppointmentItemVo {
   phone: string;
 }
 
-export enum AppointmentStatus {
-  PENDING = '待确认',
-  CONFIRMED = '已确认',
-  CANCELLED = '已取消',
-  COMPLETED = '已完成',
-}
+export type AppointmentStatus = 'PENDING' | 'CONFIRMED' | 'CANCELLED' | 'COMPLETED';
 
 // 租约
 export interface LeaseAgreement {
@@ -208,12 +203,7 @@ export interface AgreementDetailVo extends AgreementItemVo {
   graphUrlList: string[];
 }
 
-export enum LeaseStatus {
-  SIGNING = '待签约',
-  EXECUTE = '生效中',
-  TERMINATION = '已终止',
-  RENEWAL = '续约中',
-}
+export type LeaseStatus = 'SIGNING' | 'EXECUTE' | 'TERMINATION' | 'RENEWAL';
 
 // 浏览历史
 export interface HistoryItemVo {

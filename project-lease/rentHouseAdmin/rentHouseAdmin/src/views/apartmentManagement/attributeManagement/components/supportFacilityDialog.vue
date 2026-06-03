@@ -15,7 +15,8 @@
       </el-form-item>
       <el-form-item label="配套图标" prop="icon">
         <el-select
-          v-model="formData.icon"
+          :model-value="formData.icon ?? ''"
+          @update:model-value="formData.icon = ($event as string) ?? ''"
           placeholder="请选择配套图标"
           clearable
           filterable

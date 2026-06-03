@@ -5,7 +5,7 @@
         <span>杂费信息管理</span>
       </div>
     </template>
-    <el-row class="container" v-for="item in attrTypeList" :key="item">
+    <el-row class="container" v-for="item in attrTypeList" :key="item.id">
       <el-col :span="2" class="text-center">
         <el-popconfirm
           width="220"

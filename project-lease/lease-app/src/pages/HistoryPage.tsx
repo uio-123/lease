@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MapPin, Clock } from 'lucide-react';
+import { Clock } from 'lucide-react';
 import { InfiniteScroll, Toast } from 'antd-mobile';
 import { getBrowsingHistoryPage } from '@/api';
 import type { HistoryItemVo } from '@/types';
@@ -14,31 +14,39 @@ export default function HistoryPage() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    let cancelled = false;
+    const loadHistory = async () => {
+      if (cancelled) return;
+      setLoading(true);
+      try {
+        const res = await getBrowsingHistoryPage(1, 10);
+        if (cancelled) return;
+        setHistory(res.data.records || []);
+        setHasMore(1 < res.data.pages);
+        setCurrent(1);
+      } catch {
+        Toast.show('加载浏览历史失败');
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    };
     loadHistory();
+    return () => { cancelled = true; };
   }, []);
 
-  const loadHistory = async (page = 1) => {
-    if (loading) return;
+  const loadMore = async () => {
+    if (loading || !hasMore) return;
+    const nextPage = current + 1;
     setLoading(true);
     try {
-      const res = await getBrowsingHistoryPage(page, 10);
-      if (page === 1) {
-        setHistory(res.data.records || []);
-      } else {
-        setHistory((prev) => [...prev, ...(res.data.records || [])]);
-      }
-      setHasMore(page < res.data.pages);
-      setCurrent(page);
+      const res = await getBrowsingHistoryPage(nextPage, 10);
+      setHistory((prev) => [...prev, ...(res.data.records || [])]);
+      setHasMore(nextPage < res.data.pages);
+      setCurrent(nextPage);
     } catch {
       Toast.show('加载浏览历史失败');
     } finally {
       setLoading(false);
-    }
-  };
-
-  const handleLoadMore = () => {
-    if (!loading && hasMore) {
-      loadHistory(current + 1);
     }
   };
 
@@ -82,7 +90,7 @@ export default function HistoryPage() {
           <div className="empty">暂无浏览记录</div>
         )}
       </div>
-      <InfiniteScroll loadMore={handleLoadMore} hasMore={hasMore} />
+      <InfiniteScroll loadMore={loadMore} hasMore={hasMore} />
     </div>
   );
 }

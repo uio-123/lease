@@ -163,3 +163,11 @@ export function getHistoryList(params: ReqPage) {
     params
   );
 }
+
+/**
+ * @description 保存浏览历史
+ * @param roomId
+ */
+export function saveBrowsingHistory(roomId: number | string) {
+  return http.post(`/app/history/save?roomId=${roomId}`);
+}

@@ -1,19 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { MapPin, Phone, Star, Wifi, Snowflake, Wind, Tv, Refrigerator, WashingMachine, ArrowLeft } from 'lucide-react';
+import { MapPin, Phone, Star, Wifi, Snowflake, Wind, Tv, Refrigerator, type LucideIcon, ArrowLeft } from 'lucide-react';
 import { Swiper, Toast, ActionSheet, Button } from 'antd-mobile';
 import { getApartmentDetailById, getRoomPageByApartmentId, saveOrUpdateAppointment } from '@/api';
-import type { ApartmentDetailVo, RoomItemVo, PageResult } from '@/types';
-import { saveBrowsingHistory } from '@/api/apartment';
+import type { ApartmentDetailVo, RoomItemVo } from '@/types';
 import './ApartmentDetailPage.css';
 
-const facilityIcons: Record<string, any> = {
+const facilityIcons: Record<string, LucideIcon> = {
   'wifi': Wifi,
   'ac': Snowflake,
   'fan': Wind,
   'tv': Tv,
   'fridge': Refrigerator,
-  'washer': WashingMachine,
 };
 
 export default function ApartmentDetailPage() {
@@ -23,14 +21,8 @@ export default function ApartmentDetailPage() {
   const [rooms, setRooms] = useState<RoomItemVo[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (id) {
-      loadDetail();
-      loadRooms();
-    }
-  }, [id]);
-
-  const loadDetail = async () => {
+  const loadDetail = useCallback(async () => {
+    if (!id) return;
     try {
       const res = await getApartmentDetailById(Number(id));
       setDetail(res.data);
@@ -39,22 +31,29 @@ export default function ApartmentDetailPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
 
-  const loadRooms = async () => {
+  const loadRooms = useCallback(async () => {
+    if (!id) return;
     try {
       const res = await getRoomPageByApartmentId(1, 10, Number(id));
       setRooms(res.data.records || []);
     } catch {
       Toast.show('加载房间列表失败');
     }
-  };
+  }, [id]);
+
+  useEffect(() => {
+    loadDetail();
+    loadRooms();
+  }, [loadDetail, loadRooms]);
 
   const handleAppointment = () => {
     if (!detail) return;
     ActionSheet.show({
       actions: [
         {
+          key: 'book',
           text: '立即预约',
           onClick: async () => {
             try {

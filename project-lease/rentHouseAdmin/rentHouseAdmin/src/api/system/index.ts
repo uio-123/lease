@@ -88,7 +88,7 @@ export function deleteSysUserById(id: number | string) {
  * @param {string} userId
  */
 export function getUserRolesListByUserId(userId: string | number) {
-  return http.get<PageResponseInterface<UserRolesListInterfaceRes>>(
+  return http.get<Role[]>(
     `/admin/system/user/listRoleByUserId?id=${userId}`,
   )
 }
@@ -99,7 +99,7 @@ export function getUserRolesListByUserId(userId: string | number) {
  */
 export function batchSysUser(ids: string[]) {
   return http.delete<PageResponseInterface<any>>(
-    `/admin/system/sysRole/batchRemove`,
+    `/admin/system/user/batchDelete`,
     ids,
   )
 }

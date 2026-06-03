@@ -5,7 +5,7 @@
         <span>房间基本信息管理</span>
       </div>
     </template>
-    <el-row class="container" v-for="item in attrTypeList" :key="item">
+    <el-row class="container" v-for="item in attrTypeList" :key="item.id">
       <el-col :span="2" class="text-center">
         <el-popconfirm
           width="220"
@@ -71,10 +71,10 @@
       :updateRoomBase="getRoomBaseInfoListHandle"
     ></SupportRoomBaseDialog>
     <!--    属性信息弹窗管理-->
-    <supportRoomBaseAddOrEditAttrDialog
+    <SupportRoomBaseAddOrEditAttrDialog
       ref="supportRoomBaseAddOrEditAttrDialog"
       :updateRoomBaseAddOrEditAttr="getRoomBaseInfoListHandle"
-    ></supportRoomBaseAddOrEditAttrDialog>
+    ></SupportRoomBaseAddOrEditAttrDialog>
   </el-card>
 </template>
 <script setup lang="ts">
@@ -102,8 +102,8 @@ const attrTypeList = ref<AttrInfoInfoInterface[]>([])
 async function getRoomBaseInfoListHandle() {
   try {
     const { data } = await getAttrInfoList()
-    data.forEach((item) => {
-      item.attrValueList?.forEach((item2) => {
+    data.forEach((item: AttrInfoInfoInterface) => {
+      item.attrValueList?.forEach((item2: AttrValueInfoInterface) => {
         item2.attrKeyName = item.name
       })
     })

@@ -23,7 +23,7 @@ export default function ProfilePage() {
     { icon: FileText, label: '我的租约', path: '/agreements' },
     { icon: Calendar, label: '我的预约', path: '/appointments' },
     { icon: Clock, label: '浏览历史', path: '/history' },
-    { icon: Setting, label: '设置', path: '/settings' },
+    { icon: Settings, label: '设置', path: '/settings' },
   ];
 
   return (

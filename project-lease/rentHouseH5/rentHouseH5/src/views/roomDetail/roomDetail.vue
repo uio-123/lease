@@ -69,7 +69,7 @@
             <!--          占位修饰-->
             <van-col
               class="my-[3px]"
-              v-if="roomDetailInfo.attrValueVoList?.length % 2 !== 0"
+              v-if="(roomDetailInfo.attrValueVoList?.length ?? 0) % 2 !== 0"
               span="12"
             >
             </van-col>
@@ -199,7 +199,7 @@
   </van-skeleton>
 </template>
 <script setup lang="ts">
-import { getRoomDetailById } from "@/api/search";
+import { getRoomDetailById, saveBrowsingHistory } from "@/api/search";
 import { onMounted, ref } from "vue";
 import type { RoomDetailInterface } from "@/api/search/types";
 import { useMap } from "@/hooks/useMap";
@@ -214,6 +214,8 @@ const roomDetailInfo = ref<RoomDetailInterface>({} as RoomDetailInterface);
 const getRoomDetailHandle = async () => {
   const { data } = await getRoomDetailById(route.query.id as string);
   roomDetailInfo.value = data;
+  // 静默保存浏览历史
+  saveBrowsingHistory(route.query.id as string).catch(() => {});
 };
 //#region <高德地图相关>
 // 地图实例

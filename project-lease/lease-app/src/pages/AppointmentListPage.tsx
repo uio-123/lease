@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MapPin, Calendar, Clock } from 'lucide-react';
+import { MapPin, Calendar } from 'lucide-react';
 import { Tabs, Toast } from 'antd-mobile';
 import { getAppointmentList, deleteAppointment } from '@/api';
-import type { AppointmentItemVo, AppointmentStatus } from '@/types';
+import type { AppointmentItemVo } from '@/types';
 import './AppointmentListPage.css';
 
 const statusMap: Record<string, { color: string; label: string }> = {
@@ -49,7 +49,6 @@ export default function AppointmentListPage() {
   };
 
   const pendingAppointments = appointments.filter((a) => a.appointmentStatus === 'PENDING');
-  const otherAppointments = appointments.filter((a) => a.appointmentStatus !== 'PENDING');
 
   const renderAppointmentCard = (item: AppointmentItemVo) => {
     const status = statusMap[item.appointmentStatus] || { color: '#999', label: '未知' };
@@ -74,7 +73,7 @@ export default function AppointmentListPage() {
             <span className="status" style={{ background: status.color }}>
               {status.label}
             </span>
-            {(item.appointmentStatus === 'PENDING') && (
+            {item.appointmentStatus === 'PENDING' && (
               <button className="cancel-btn" onClick={(e) => handleCancel(item.id!, e)}>
                 取消预约
               </button>
