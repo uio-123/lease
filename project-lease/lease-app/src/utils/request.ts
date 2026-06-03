@@ -12,7 +12,7 @@ request.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     const token = useAuthStore.getState().token;
     if (token) {
-      config.headers.Authorization = token;
+      config.headers['access-token'] = token;
     }
     return config;
   },
