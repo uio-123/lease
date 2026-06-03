@@ -17,6 +17,8 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @Tag(name = "后台用户信息管理")
 @RestController
@@ -25,10 +27,11 @@ public class SystemUserController {
 
     @Autowired
     SystemUserService service;
+
     @Operation(summary = "根据条件分页查询后台用户列表")
     @GetMapping("page")
     public Result<IPage<SystemUserItemVo>> page(@RequestParam long current, @RequestParam long size, SystemUserQueryVo queryVo) {
-        IPage<SystemUserItemVo> page =new Page<>(current, size);
+        IPage<SystemUserItemVo> page = new Page<>(current, size);
         IPage<SystemUserItemVo> result = service.pageUserByQuery(page, queryVo);
         return Result.ok(result);
     }
@@ -43,7 +46,7 @@ public class SystemUserController {
     @Operation(summary = "保存或更新后台用户信息")
     @PostMapping("saveOrUpdate")
     public Result saveOrUpdate(@RequestBody SystemUser systemUser) {
-        if(systemUser.getPassword() != null){
+        if (systemUser.getPassword() != null) {
             systemUser.setPassword(DigestUtils.md5Hex(systemUser.getPassword()));
         }
         service.saveOrUpdate(systemUser);
@@ -59,10 +62,17 @@ public class SystemUserController {
         return Result.ok(count == 0);
     }
 
-    @DeleteMapping("deleteById")
     @Operation(summary = "根据ID删除后台用户信息")
+    @DeleteMapping("deleteById")
     public Result removeById(@RequestParam Long id) {
         service.removeById(id);
+        return Result.ok();
+    }
+
+    @Operation(summary = "批量删除后台用户")
+    @DeleteMapping("batchDelete")
+    public Result batchDelete(@RequestBody List<Long> idList) {
+        service.removeByIds(idList);
         return Result.ok();
     }
 

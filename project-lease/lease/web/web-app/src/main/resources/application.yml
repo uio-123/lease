@@ -38,3 +38,14 @@ minio:
 
 springdoc:
   default-flat-param-object: true
+
+# 短信服务配置
+# mock=true 时使用模拟模式（验证码打印到控制台），不需要配置密钥
+# mock=false 时使用阿里云短信发送，需取消下方注释并填入真实值
+sms:
+  mock: true
+  #aliyun:
+  #  access-key-id: your-access-key-id
+  #  access-key-secret: your-access-key-secret
+  #  sign-name: your-sign-name
+  #  template-code: SMS_XXXXX

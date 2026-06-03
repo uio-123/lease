@@ -39,7 +39,7 @@ public class LeaseAgreementController {
     }
 
     @Operation(summary = "根据id查询租约信息")
-    @GetMapping(name = "getById")
+    @GetMapping("getById")
     public Result<AgreementVo> getById(@RequestParam Long id) {
         AgreementVo result=service.agreementGetById(id);
         return Result.ok(result);

@@ -54,5 +54,27 @@ public class ViewAppointmentController {
         return Result.ok(detailVo);
     }
 
+    @Operation(summary = "取消或删除预约")
+    @DeleteMapping("delete")
+    public Result delete(@RequestParam Long id) {
+        com.atguigu.lease.common.login.LoginUser loginUser = LoginUserHolder.getLoginUser();
+        if (loginUser == null) {
+            throw new com.atguigu.lease.common.exception.LeaseException(ResultCodeEnum.APP_LOGIN_AUTH);
+        }
+        Long userId = loginUser.getUserId();
+
+        // 查询预约，校验归属
+        com.atguigu.lease.model.entity.ViewAppointment appointment = viewAppointmentService.getById(id);
+        if (appointment == null) {
+            throw new com.atguigu.lease.common.exception.LeaseException(ResultCodeEnum.DATA_ERROR);
+        }
+        if (!appointment.getUserId().equals(userId)) {
+            throw new com.atguigu.lease.common.exception.LeaseException(ResultCodeEnum.APP_LOGIN_AUTH);
+        }
+
+        viewAppointmentService.removeById(id);
+        return Result.ok();
+    }
+
 }
 

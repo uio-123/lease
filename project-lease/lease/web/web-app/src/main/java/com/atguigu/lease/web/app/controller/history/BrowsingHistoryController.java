@@ -11,10 +11,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Tag(name = "浏览历史管理")
@@ -35,5 +32,17 @@ public class BrowsingHistoryController {
         Page<HistoryItemVo> page = new Page<>(current, size);
         IPage<HistoryItemVo> result = browsingHistoryService.pageByUserId(page, userId);
         return Result.ok(result);
+    }
+
+    @Operation(summary = "保存浏览历史")
+    @PostMapping("save")
+    public Result save(@RequestParam Long roomId) {
+        com.atguigu.lease.common.login.LoginUser loginUser = LoginUserHolder.getLoginUser();
+        if (loginUser == null) {
+            throw new com.atguigu.lease.common.exception.LeaseException(ResultCodeEnum.APP_LOGIN_AUTH);
+        }
+        Long userId = loginUser.getUserId();
+        browsingHistoryService.saveBrowsingHistory(userId, roomId);
+        return Result.ok();
     }
 }
