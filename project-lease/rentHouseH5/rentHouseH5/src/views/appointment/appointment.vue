@@ -1,5 +1,5 @@
 <template>
-  <van-skeleton :row="20" :loading="!apartmentDetailInfo?.id">
+  <van-skeleton :row="20" :loading="loading">
     <div class="page-container min-h-[100vh] py-[15px]">
       <!--    预约公寓-->
       <div>
@@ -120,14 +120,22 @@ import { AppointmentStatus } from "@/enums/constEnums";
 import { showToast } from "vant";
 const route = useRoute();
 const router = useRouter();
+// loading 状态，用于控制骨架屏显示
+const loading = ref(true);
 // 公寓的详情信息
 const apartmentDetailInfo = ref<ApartmentInterface>({} as ApartmentInterface);
 // 获取公寓的详情信息
 const getApartmentDetailHandle = async () => {
-  const { data } = await getApartmentDetailById(
-    route.query.apartmentId as string
-  );
-  apartmentDetailInfo.value = data;
+  try {
+    const { data } = await getApartmentDetailById(
+      route.query.apartmentId as string
+    );
+    apartmentDetailInfo.value = data;
+  } catch (e) {
+    showToast("获取公寓详情失败");
+  } finally {
+    loading.value = false;
+  }
 };
 //#region <form表单相关>
 const formData = ref<
@@ -193,16 +201,27 @@ async function onSubmit(values: any) {
 //#endregion
 // 预约信息
 async function getAppointmentDetailHandle() {
-  const { data } = await getAppointmentDetailById(
-    route.query.appointmentId as string
-  );
-  Object.keys(formData.value).forEach(key => {
-    (formData.value as any)[key] = (data as any)[key];
-  });
-  // 单独处理日期
-  dateInfo.value.date = data.appointmentTime.split(" ")[0].split("-");
-  dateInfo.value.time = data.appointmentTime.split(" ")[1].split(":");
-  apartmentDetailInfo.value = data.apartmentItemVo;
+  try {
+    const { data } = await getAppointmentDetailById(
+      route.query.appointmentId as string
+    );
+    Object.keys(formData.value).forEach(key => {
+      (formData.value as any)[key] = (data as any)[key];
+    });
+    // 安全地解析 appointmentTime，兼容字符串 "yyyy-MM-dd HH:mm:ss" 和时间戳
+    if (data.appointmentTime) {
+      const day = dayjs(data.appointmentTime);
+      if (day.isValid()) {
+        dateInfo.value.date = day.format("YYYY-MM-DD").split("-");
+        dateInfo.value.time = day.format("HH:mm:ss").split(":");
+      }
+    }
+    apartmentDetailInfo.value = data.apartmentItemVo;
+  } catch (e) {
+    showToast("获取预约信息失败");
+  } finally {
+    loading.value = false;
+  }
 }
 onMounted(async () => {
   route.query.apartmentId && (await getApartmentDetailHandle());
