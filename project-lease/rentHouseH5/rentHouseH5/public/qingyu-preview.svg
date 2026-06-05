@@ -1,0 +1,80 @@
+<svg width="1440" height="900" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1440" height="900" fill="#E6FFFA"/>
+  <circle cx="154" cy="122" r="84" fill="#CCFBF1"/>
+  <circle cx="1264" cy="766" r="126" fill="#BAE6FD"/>
+  <text x="96" y="110" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="44" font-weight="800" fill="#134E4A">青寓 H5 视觉预览</text>
+  <text x="98" y="152" font-family="Inter, PingFang SC, Microsoft YaHei, sans-serif" font-size="20" fill="#0F766E">清爽可信的租房体验：真实房源、柔和卡片、明确预约行动</text>
+
+  <g transform="translate(129 205)">
+    <rect x="0" y="0" width="330" height="620" rx="42" fill="#0B3B38"/>
+    <rect x="14" y="14" width="302" height="592" rx="32" fill="#F8FFFD"/>
+    <rect x="34" y="38" width="262" height="86" rx="24" fill="#CCFBF1"/>
+    <text x="56" y="76" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="22" font-weight="700" fill="#134E4A">青寓</text>
+    <text x="56" y="104" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="14" fill="#0F766E">找到离生活更近的家</text>
+    <rect x="34" y="142" width="262" height="46" rx="23" fill="white" stroke="#99F6E4"/>
+    <text x="58" y="171" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="14" fill="#0F766E">地区  价格  付款方式  排序</text>
+    <rect x="34" y="212" width="262" height="142" rx="22" fill="white" stroke="#CCFBF1"/>
+    <rect x="50" y="229" width="92" height="92" rx="18" fill="#BAE6FD"/>
+    <path d="M50 305L83 272L104 292L123 262L142 305V321H50V305Z" fill="#0F766E" opacity=".72"/>
+    <text x="158" y="251" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="700" fill="#134E4A">青云里 1802</text>
+    <text x="158" y="278" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#64748B">杭州 西湖区 文三路</text>
+    <rect x="158" y="292" width="48" height="22" rx="11" fill="#CCFBF1"/>
+    <text x="170" y="307" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#0F766E">近地铁</text>
+    <text x="158" y="337" font-family="Inter, PingFang SC, sans-serif" font-size="24" font-weight="800" fill="#0369A1">￥2680</text>
+    <rect x="34" y="374" width="262" height="142" rx="22" fill="white" stroke="#CCFBF1"/>
+    <rect x="50" y="391" width="92" height="92" rx="18" fill="#BFEFE8"/>
+    <path d="M50 466L86 430L109 450L126 420L142 466V483H50V466Z" fill="#14B8A6" opacity=".74"/>
+    <text x="158" y="413" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="700" fill="#134E4A">湖畔公寓 0906</text>
+    <text x="158" y="440" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="12" fill="#64748B">滨江区 江南大道</text>
+    <rect x="158" y="454" width="48" height="22" rx="11" fill="#E0F2FE"/>
+    <text x="170" y="469" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#0369A1">朝南</text>
+    <text x="158" y="499" font-family="Inter, PingFang SC, sans-serif" font-size="24" font-weight="800" fill="#0369A1">￥3100</text>
+    <rect x="14" y="546" width="302" height="60" rx="0" fill="white"/>
+    <circle cx="65" cy="576" r="13" fill="#0F766E"/>
+    <circle cx="126" cy="576" r="13" fill="#CBD5E1"/>
+    <circle cx="188" cy="576" r="13" fill="#CBD5E1"/>
+    <circle cx="250" cy="576" r="13" fill="#CBD5E1"/>
+  </g>
+
+  <g transform="translate(555 205)">
+    <rect width="330" height="620" rx="42" fill="#0B3B38"/>
+    <rect x="14" y="14" width="302" height="592" rx="32" fill="#F8FFFD"/>
+    <rect x="14" y="14" width="302" height="210" rx="32" fill="#BAE6FD"/>
+    <path d="M14 179L98 105L159 158L207 92L316 184V224H14V179Z" fill="#0F766E" opacity=".82"/>
+    <rect x="34" y="246" width="262" height="110" rx="24" fill="white" stroke="#CCFBF1"/>
+    <text x="54" y="281" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="21" font-weight="800" fill="#134E4A">青云里 1802 房间</text>
+    <text x="54" y="314" font-family="Inter, PingFang SC, sans-serif" font-size="26" font-weight="800" fill="#0369A1">￥2680/月</text>
+    <rect x="54" y="326" width="58" height="22" rx="11" fill="#CCFBF1"/>
+    <text x="68" y="342" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#0F766E">可短租</text>
+    <rect x="34" y="374" width="262" height="86" rx="22" fill="white" stroke="#CCFBF1"/>
+    <text x="54" y="407" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="16" font-weight="700" fill="#134E4A">基本信息</text>
+    <text x="54" y="436" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#64748B">一室一厅 · 32m² · 独立卫浴</text>
+    <rect x="34" y="478" width="262" height="62" rx="22" fill="white" stroke="#CCFBF1"/>
+    <text x="54" y="516" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="14" fill="#134E4A">空调  洗衣机  智能门锁  宽带</text>
+    <rect x="34" y="558" width="262" height="46" rx="23" fill="#0369A1"/>
+    <text x="119" y="587" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="16" font-weight="700" fill="white">预约看房</text>
+  </g>
+
+  <g transform="translate(981 205)">
+    <rect width="330" height="620" rx="42" fill="#0B3B38"/>
+    <rect x="14" y="14" width="302" height="592" rx="32" fill="#F8FFFD"/>
+    <rect x="14" y="14" width="302" height="214" rx="32" fill="#CCFBF1"/>
+    <circle cx="165" cy="98" r="48" fill="white"/>
+    <path d="M131 91L165 64L199 91" stroke="#0F766E" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M143 91V128H187V91" stroke="#0F766E" stroke-width="10" stroke-linejoin="round"/>
+    <text x="134" y="174" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="22" font-weight="800" fill="#134E4A">青寓用户</text>
+    <rect x="34" y="254" width="262" height="92" rx="24" fill="white" stroke="#CCFBF1"/>
+    <text x="58" y="291" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="16" font-weight="700" fill="#134E4A">浏览历史</text>
+    <text x="58" y="318" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#64748B">继续查看心仪房源</text>
+    <rect x="34" y="366" width="262" height="92" rx="24" fill="white" stroke="#CCFBF1"/>
+    <text x="58" y="403" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="16" font-weight="700" fill="#134E4A">我的预约</text>
+    <text x="58" y="430" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#64748B">看房日程清楚掌握</text>
+    <rect x="34" y="478" width="262" height="46" rx="23" fill="#0F766E"/>
+    <text x="129" y="507" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="16" font-weight="700" fill="white">退出登录</text>
+    <rect x="14" y="546" width="302" height="60" rx="0" fill="white"/>
+    <circle cx="65" cy="576" r="13" fill="#CBD5E1"/>
+    <circle cx="126" cy="576" r="13" fill="#CBD5E1"/>
+    <circle cx="188" cy="576" r="13" fill="#CBD5E1"/>
+    <circle cx="250" cy="576" r="13" fill="#0F766E"/>
+  </g>
+</svg>

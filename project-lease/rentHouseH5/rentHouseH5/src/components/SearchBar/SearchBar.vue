@@ -1,12 +1,12 @@
 <template>
-  <van-dropdown-menu ref="menuRef">
+  <van-dropdown-menu ref="menuRef" class="qingyu-searchbar">
     <van-dropdown-item title="地区">
       <div class="comment-padding">
         <div class="flex flex-row h-[30vh] mt-[5px]">
           <!--        省-->
           <div class="basis-1/3" style="overflow: scroll">
             <div
-              class="mt-[5px]"
+            class="area-option"
               :class="{ checked: item.isCheck }"
               @click="clickAreaItemHandle(item, 0)"
               v-for="item in areaInfo.provinceList"
@@ -18,7 +18,7 @@
           <!--        市-->
           <div class="basis-1/3" style="overflow: scroll">
             <div
-              class="mt-[5px]"
+            class="area-option"
               @click="clickAreaItemHandle(item, 1)"
               v-for="item in areaInfo.cityList"
               :class="{ checked: item.isCheck }"
@@ -30,7 +30,7 @@
           <!--        区-->
           <div class="basis-1/3" style="overflow: scroll">
             <div
-              class="mt-[5px]"
+            class="area-option"
               @click="clickAreaItemHandle(item, 2)"
               v-for="item in areaInfo.districtList"
               :class="{ checked: item.isCheck }"
@@ -68,7 +68,7 @@
       <div class="comment-padding">
         <van-row gutter="10" justify="space-between" class="mt-[5px]">
           <van-col
-            class="text-center border p-[4px] mt-[5px] transition-all"
+            class="filter-chip"
             :class="{ 'other-checked': item.isCheck }"
             @click="rentClickHandle(item)"
             v-for="item in rentInfoList"
@@ -106,7 +106,7 @@
       <div class="comment-padding">
         <van-row justify="space-between" class="mt-[5px]">
           <van-col
-            class="text-center border p-[4px] mt-[5px] transition-all"
+            class="filter-chip"
             :class="{ 'other-checked': item.isCheck }"
             @click="paymentClickHandle(item)"
             v-for="item in paymentInfoList"
@@ -144,7 +144,7 @@
       <div class="comment-padding">
         <van-row gutter="10" justify="space-around" class="mt-[5px]">
           <van-col
-            class="text-center border p-[4px] mt-[5px] transition-all"
+            class="filter-chip"
             :class="{ 'other-checked': item.isCheck }"
             @click="orderTypeClickHandle(item)"
             v-for="item in orderTypeInfoList"
@@ -514,14 +514,50 @@ onMounted(() => {
 </script>
 
 <style scoped lang="less">
-// 地区选择
-.checked {
-  color: var(--van-primary-color);
+.qingyu-searchbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  margin: 10px 12px 12px;
+  overflow: hidden;
+  border: 1px solid var(--qingyu-border);
+  border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(15, 118, 110, 0.1);
+
+  :deep(.van-dropdown-menu__bar) {
+    height: 44px;
+    background: var(--qingyu-surface);
+    box-shadow: none;
+  }
+
+  :deep(.van-dropdown-menu__title) {
+    color: var(--qingyu-text);
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  :deep(.van-dropdown-menu__title--active) {
+    color: var(--qingyu-primary);
+  }
 }
 
-// 价格选择
+.area-option,
+.filter-chip {
+  min-height: 34px;
+  margin-top: 8px;
+  padding: 7px 10px;
+  border: 1px solid var(--qingyu-border);
+  border-radius: 999px;
+  color: var(--qingyu-text);
+  text-align: center;
+  transition: color 0.2s, background-color 0.2s, border-color 0.2s;
+}
+
+.checked,
 .other-checked {
-  background-color: var(--van-primary-color);
-  color: var(--van-white);
+  border-color: var(--qingyu-primary);
+  color: var(--qingyu-primary);
+  background: var(--qingyu-selected-bg);
+  font-weight: 700;
 }
 </style>

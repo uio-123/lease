@@ -2,7 +2,7 @@
   <van-skeleton :row="20" :loading="!agreementList">
     <div class="p-[10px]">
       <van-card
-        class="rounded-xl shadow"
+        class="qingyu-list-card"
         v-for="item in agreementList"
         :key="item.id"
         @click="goAgreementDetail(item)"
@@ -87,8 +87,8 @@
         <template #price>
           <!--      价格-->
           <div>
-            <span class="text-red-500 text-[14px]">￥</span>
-            <span class="text-red-500 text-[16px]">{{ item.rent }}/月</span>
+            <span class="qingyu-price-symbol">￥</span>
+            <span class="qingyu-price">{{ item.rent }}/月</span>
           </div>
         </template>
         <template #footer>
@@ -206,4 +206,31 @@ onMounted(async () => {
 });
 </script>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+.qingyu-list-card {
+  overflow: hidden;
+  border: 1px solid var(--qingyu-border);
+  border-radius: 20px;
+  background: var(--qingyu-surface);
+  box-shadow: var(--qingyu-shadow);
+}
+
+.qingyu-list-card :deep(.van-card__thumb) {
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.qingyu-price-symbol,
+.qingyu-price {
+  color: var(--qingyu-cta);
+  font-weight: 900;
+}
+
+.qingyu-price-symbol {
+  font-size: 13px;
+}
+
+.qingyu-price {
+  font-size: 17px;
+}
+</style>

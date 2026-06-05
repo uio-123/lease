@@ -6,8 +6,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
-  color: var(--van-text-color);
+  font-family: Inter, Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+  color: var(--qingyu-text);
   background-color: var(--color-background-2);
   font-size: 14px;
 }
@@ -29,26 +29,71 @@ a:hover {
   text-decoration: none;
 }
 .main-container{
-  padding:0 20px;
+  padding:0 16px;
   width: 100vw;
+  box-sizing: border-box;
 }
 .comment-padding{
-  padding: 0 20px;
+  padding: 0 16px;
 }
 .card{
   position: relative;
   box-sizing: border-box;
-  padding: var(--van-card-padding);
+  padding: 16px;
   color: var(--van-card-text-color);
-  background: var(--van-card-background);
-  border-radius: 10px;
-  margin: 10px;
+  background: var(--qingyu-surface);
+  border: 1px solid var(--qingyu-border);
+  border-radius: 18px;
+  margin: 12px;
+  box-shadow: var(--qingyu-shadow);
 }
 .page-container{
   background-color: var(--color-block-background);
+  min-height: 100vh;
+  padding-bottom: 16px;
+}
+.detail-page-container {
+  padding-bottom: calc(88px + env(safe-area-inset-bottom));
 }
 /* 定义 覆盖vant样式*/
 :root:root {
-  --van-primary-color: #277941;
+  --van-primary-color: var(--qingyu-primary);
+  --van-success-color: var(--qingyu-secondary);
+  --van-danger-color: #ef4444;
+  --van-text-color: var(--qingyu-text);
+  --van-text-color-2: var(--qingyu-muted);
+  --van-background: var(--qingyu-bg);
+  --van-background-2: var(--qingyu-surface);
+  --van-border-color: var(--qingyu-border);
+  --van-active-color: #dffdf8;
+  --van-button-primary-background: var(--qingyu-cta);
+  --van-button-primary-border-color: var(--qingyu-cta);
+  --van-button-border-radius: 999px;
+  --van-card-background: var(--qingyu-surface);
+  --van-card-padding: 14px;
+  --van-card-thumb-size: 104px;
+  --van-card-border-radius: 18px;
+  --van-card-title-color: var(--qingyu-text);
+  --van-card-desc-color: var(--qingyu-muted);
+  --van-tag-primary-color: var(--qingyu-primary);
+  --van-tabbar-background: rgba(255, 255, 255, 0.94);
+  --van-tabbar-item-active-color: var(--qingyu-primary);
+  --van-nav-bar-title-text-color: var(--qingyu-text);
+}
 
+.van-button {
+  min-height: 44px;
+  font-weight: 700;
+}
+
+.van-tag--primary.van-tag--plain {
+  background: var(--qingyu-selected-bg);
+  border-color: #99f6e4;
+  color: var(--qingyu-primary);
+}
+
+.van-tabbar {
+  border-top: 1px solid var(--qingyu-border);
+  box-shadow: 0 -12px 30px rgba(15, 118, 110, 0.08);
+  backdrop-filter: blur(12px);
 }

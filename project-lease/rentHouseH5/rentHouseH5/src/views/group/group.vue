@@ -19,7 +19,7 @@
               round
               width="12vw"
               height="12vw"
-              src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
+              src="/qingyu-icon.svg"
             >
               <template v-slot:error>加载失败</template>
               <template v-slot:loading>
@@ -48,7 +48,7 @@
                 <van-image
                   width="25vw"
                   height="25vw"
-                  src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
+                  src="/qingyu-icon.svg"
                 >
                   <template v-slot:error>加载失败</template>
                   <template v-slot:loading>

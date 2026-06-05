@@ -1,14 +1,15 @@
 <template>
   <van-card
-    class="rounded-xl shadow"
+    class="qingyu-apartment-card"
     :title="`${data.name}`"
     :desc="`${data.provinceName} ${data.cityName} ${data.districtName}`"
     @click="goApartmentDetail"
   >
     <template #price>
       <!--      价格-->
-      <span class="text-red-500 text-[14px]">￥</span>
-      <span class="text-red-500 text-[16px]">{{ data.minRent }}/月起</span>
+      <span class="price-symbol">￥</span>
+      <span class="apartment-price">{{ data.minRent }}</span>
+      <span class="price-unit">/月起</span>
     </template>
     <!--    thumb-->
     <template #thumb>
@@ -24,7 +25,7 @@
     </template>
     <template #tags>
       <van-tag
-        class="last:mr-0 mr-[5px]"
+        class="apartment-tag last:mr-0 mr-[5px]"
         plain
         v-for="item in data.labelInfoList"
         :key="item.id"
@@ -55,4 +56,56 @@ const goApartmentDetail = () => {
 };
 </script>
 
-<style scoped></style>
+<style scoped lang="less">
+.qingyu-apartment-card {
+  margin: 12px 0;
+  overflow: hidden;
+  border: 1px solid var(--qingyu-border);
+  border-radius: 20px;
+  background: var(--qingyu-surface);
+  box-shadow: var(--qingyu-shadow);
+
+  :deep(.van-card__thumb) {
+    width: 108px;
+    height: 108px;
+    overflow: hidden;
+    border-radius: 16px;
+  }
+
+  :deep(.van-card__title) {
+    color: var(--qingyu-text);
+    font-size: 15px;
+    font-weight: 800;
+  }
+
+  :deep(.van-card__desc) {
+    color: var(--qingyu-muted);
+    line-height: 1.6;
+  }
+}
+
+.price-symbol,
+.apartment-price,
+.price-unit {
+  color: var(--qingyu-cta);
+}
+
+.price-symbol {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.apartment-price {
+  font-size: 21px;
+  font-weight: 900;
+}
+
+.price-unit {
+  margin-left: 2px;
+  font-size: 12px;
+}
+
+.apartment-tag {
+  margin-top: 8px;
+}
+</style>

@@ -34,7 +34,7 @@
             round
             width="15vw"
             height="15vw"
-            src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
+            src="/qingyu-icon.svg"
           >
             <template v-slot:error>加载失败</template>
             <template v-slot:loading>

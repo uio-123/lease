@@ -2,7 +2,7 @@
   <van-skeleton :row="20" :loading="!appointmentList">
     <div class="p-[10px]">
       <van-card
-        class="rounded-xl shadow"
+        class="qingyu-list-card"
         v-for="item in appointmentList"
         :key="item.id"
         @click="goAppointmentDetail(item)"
@@ -41,8 +41,8 @@
         <!--      price-->
         <template #price>
           <div class="flex justify-between">
-            <div class="text-[12px] text-red-500">预约时间</div>
-            <div class="text-[12px] text-red-500">
+            <div class="appointment-time">预约时间</div>
+            <div class="appointment-time">
               {{ item.appointmentTime }}
             </div>
           </div>
@@ -89,5 +89,24 @@ onMounted(async () => {
   background-color: var(--van-primary-background-color);
   font-weight: bold;
   //color: white;
+}
+
+.qingyu-list-card {
+  overflow: hidden;
+  border: 1px solid var(--qingyu-border);
+  border-radius: 20px;
+  background: var(--qingyu-surface);
+  box-shadow: var(--qingyu-shadow);
+}
+
+.qingyu-list-card :deep(.van-card__thumb) {
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.appointment-time {
+  color: var(--qingyu-cta);
+  font-size: 12px;
+  font-weight: 800;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <van-skeleton :row="20" :loading="!roomDetailInfo?.id">
-    <div class="page-container">
+    <div class="page-container detail-page-container">
       <!--  轮播图-->
       <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
         <van-swipe-item
@@ -38,8 +38,8 @@
           </div>
           <!--      价格-->
           <div>
-            <span class="text-red-500 text-[16px]">￥</span>
-            <span class="text-red-500 text-[18px]"
+            <span class="detail-price-symbol">￥</span>
+            <span class="detail-price"
               >{{ roomDetailInfo.rent }}/月</span
             >
           </div>
@@ -191,7 +191,11 @@
       </div>
       <!--    预约看房-->
       <van-sticky :offset-bottom="0" position="bottom">
-        <van-button type="primary" block @click="appointmentToViewHandle"
+        <van-button
+          class="qingyu-sticky-action"
+          type="primary"
+          block
+          @click="appointmentToViewHandle"
           >预约看房</van-button
         >
       </van-sticky>
@@ -262,8 +266,46 @@ onMounted(async () => {
 
 <style scoped lang="less">
 .base-info-title {
-  //background-color: var(--van-primary-background-color);
+  display: flex;
+  align-items: center;
+  color: var(--qingyu-text);
   font-weight: bold;
-  //color: white;
+}
+
+.detail-price-symbol,
+.detail-price {
+  color: var(--qingyu-cta);
+  font-weight: 900;
+}
+
+.detail-price-symbol {
+  font-size: 16px;
+}
+
+.detail-price {
+  font-size: 22px;
+}
+
+.base-info-title::before {
+  display: inline-block;
+  width: 4px;
+  height: 16px;
+  margin-right: 8px;
+  border-radius: 999px;
+  background: var(--qingyu-primary);
+  content: "";
+}
+
+.my-swipe {
+  overflow: hidden;
+  border-radius: 0 0 24px 24px;
+  box-shadow: 0 14px 34px rgba(15, 118, 110, 0.16);
+}
+
+.qingyu-sticky-action {
+  border-radius: 0;
+  min-height: 52px;
+  font-size: 16px;
+  box-shadow: 0 -10px 30px rgba(3, 105, 161, 0.18);
 }
 </style>

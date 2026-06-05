@@ -5,7 +5,7 @@
       <div>
         <div class="base-info-title main-container py-[4px]">签约公寓</div>
         <div class="my-[5px] px-[20px]">
-          <van-card @click="goApartmentDetail()" class="rounded-xl shadow">
+          <van-card @click="goApartmentDetail()" class="qingyu-agreement-card">
             <!--      title-->
             <template #title>
               <h2 class="text-[16px] font-bold mt-[25px] ml-[25px]">
@@ -33,7 +33,7 @@
       <div>
         <div class="base-info-title main-container py-[4px]">签约房间</div>
         <div class="my-[5px] px-[20px]">
-          <van-card @click="goRoomDetail()" class="rounded-xl shadow">
+          <van-card @click="goRoomDetail()" class="qingyu-agreement-card">
             <!--      title-->
             <template #title>
               <h2 class="text-[16px] font-bold mt-[25px] ml-[25px]">
@@ -59,7 +59,7 @@
       <div>
         <div class="base-info-title main-container py-[4px]">签约房间</div>
         <div class="main-container my-[5px]">
-          <div class="rounded-xl shadow overflow-hidden">
+          <div class="qingyu-form-card overflow-hidden">
             <van-row>
               <van-col span="24">
                 <van-field
@@ -93,7 +93,7 @@
       <div>
         <div class="base-info-title main-container py-[4px]">租约详情</div>
         <div class="main-container my-[5px]">
-          <div class="rounded-xl shadow overflow-hidden">
+          <div class="qingyu-form-card overflow-hidden">
             <van-row>
               <!--          租期-->
               <van-col span="24">
@@ -506,5 +506,34 @@ onMounted(async () => {
 }
 ::v-deep .van-card {
   background: var(--van-background-2) !important;
+}
+
+.qingyu-agreement-card {
+  overflow: hidden;
+  border: 1px solid var(--qingyu-border);
+  border-radius: 20px;
+  background: var(--qingyu-surface);
+  box-shadow: var(--qingyu-shadow);
+}
+
+.qingyu-form-card {
+  background: var(--qingyu-surface);
+  border: 1px solid var(--qingyu-border);
+  border-radius: 18px;
+  box-shadow: 0 8px 20px rgba(15, 118, 110, 0.08);
+}
+
+.qingyu-form-card :deep(.van-field) {
+  background: var(--qingyu-surface);
+  color: var(--qingyu-text);
+}
+
+.qingyu-form-card :deep(.van-field__label) {
+  color: var(--qingyu-muted);
+}
+
+.qingyu-form-card :deep(.van-cell) {
+  background: var(--qingyu-surface);
+  color: var(--qingyu-text);
 }
 </style>

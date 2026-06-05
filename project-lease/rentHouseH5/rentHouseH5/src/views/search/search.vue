@@ -1,4 +1,11 @@
 <template>
+  <div class="search-hero main-container">
+    <img src="/qingyu-icon.svg" alt="青寓" class="brand-icon" />
+    <div>
+      <div class="brand-title">青寓</div>
+      <div class="brand-subtitle">找到离生活更近的家</div>
+    </div>
+  </div>
   <SearchBar :confirm-callback="confirmCallback"></SearchBar>
 
   <div class="main-container">
@@ -60,3 +67,34 @@ async function getRoomListHandler(pageInfo: ReqPage) {
   );
 }
 </script>
+
+<style scoped lang="less">
+.search-hero {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 16px;
+  padding-bottom: 4px;
+  color: var(--qingyu-text);
+}
+
+.brand-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  box-shadow: 0 10px 26px rgba(15, 118, 110, 0.16);
+}
+
+.brand-title {
+  color: var(--qingyu-primary);
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.brand-subtitle {
+  margin-top: 3px;
+  color: var(--qingyu-muted);
+  font-size: 13px;
+}
+</style>

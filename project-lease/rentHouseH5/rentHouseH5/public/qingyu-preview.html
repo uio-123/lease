@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>青寓 H5 视觉预览</title>
+    <link rel="icon" href="./qingyu-icon.svg" type="image/svg+xml" />
+    <style>
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        background: #e6fffa;
+        color: #134e4a;
+        font-family: Inter, "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      }
+
+      body {
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        box-sizing: border-box;
+      }
+
+      .preview-shell {
+        width: min(100%, 1440px);
+      }
+
+      .preview-image {
+        display: block;
+        width: 100%;
+        height: auto;
+        border: 1px solid #99f6e4;
+        border-radius: 24px;
+        background: #e6fffa;
+        box-shadow: 0 24px 70px rgba(15, 118, 110, 0.16);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="preview-shell">
+      <img class="preview-image" src="./qingyu-preview.svg" alt="青寓 H5 视觉预览" />
+    </main>
+  </body>
+</html>

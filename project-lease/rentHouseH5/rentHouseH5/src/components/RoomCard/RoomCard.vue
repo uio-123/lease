@@ -1,10 +1,10 @@
 <template>
-  <van-card @click="goRoomDetail" class="rounded-xl shadow">
+  <van-card @click="goRoomDetail" class="qingyu-room-card">
     <!--      title-->
     <template #title>
       <slot name="title">
         <!--      标题-->
-        <span class="text-[14px] font-bold">{{
+        <span class="room-title">{{
           `${data.apartmentInfo?.name || ""} ${data.roomNumber}房间`
         }}</span>
       </slot>
@@ -13,7 +13,7 @@
     <template #desc>
       <slot name="desc">
         <div>
-          <span class="text-[12px] --van-gray-6">{{
+          <span class="room-location">{{
             `${data?.apartmentInfo?.provinceName || ""} ${
               data?.apartmentInfo?.cityName || ""
             } ${data?.apartmentInfo?.districtName || ""}`
@@ -25,8 +25,9 @@
     <template #price>
       <slot name="price">
         <!--      价格-->
-        <span class="text-red-500 text-[14px]">￥</span>
-        <span class="text-red-500 text-[20px]">{{ data.rent }}</span>
+        <span class="price-symbol">￥</span>
+        <span class="room-price">{{ data.rent }}</span>
+        <span class="price-unit">/月</span>
       </slot>
     </template>
     <!--    thumb-->
@@ -47,7 +48,7 @@
     <template #tags>
       <slot name="tags">
         <van-tag
-          class="last:mr-0 mr-[5px]"
+          class="room-tag last:mr-0 mr-[5px]"
           plain
           v-for="item in data?.labelInfoList"
           :key="item.id"
@@ -89,4 +90,62 @@ const goRoomDetail = () => {
 };
 </script>
 
-<style scoped></style>
+<style scoped lang="less">
+.qingyu-room-card {
+  margin: 12px 0;
+  overflow: hidden;
+  border: 1px solid var(--qingyu-border);
+  border-radius: 20px;
+  background: var(--qingyu-surface);
+  box-shadow: var(--qingyu-shadow);
+
+  :deep(.van-card__thumb) {
+    width: 108px;
+    height: 108px;
+    overflow: hidden;
+    border-radius: 16px;
+  }
+
+  :deep(.van-card__content) {
+    min-height: 108px;
+  }
+}
+
+.room-title {
+  color: var(--qingyu-text);
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.room-location {
+  color: var(--qingyu-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.price-symbol,
+.room-price,
+.price-unit {
+  color: var(--qingyu-cta);
+}
+
+.price-symbol {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.room-price {
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.price-unit {
+  margin-left: 2px;
+  font-size: 12px;
+}
+
+.room-tag {
+  margin-top: 8px;
+}
+</style>

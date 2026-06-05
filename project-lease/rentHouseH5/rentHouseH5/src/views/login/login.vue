@@ -79,7 +79,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import defaultAvatarUrl from "../../../public/favicon.ico";
+const defaultAvatarUrl = "/qingyu-icon.svg";
 import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { getSmsCode } from "@/api/user";
