@@ -2,7 +2,7 @@
   <div class="layout-footer-container">
     Copyright
     <svg-icon name="copyright" size="16px" color="rgba(0, 0, 0, 0.45)" />
-    {{ fullYear }}尚硅谷教学
+    {{ fullYear }}青寓运营团队
   </div>
 </template>
 

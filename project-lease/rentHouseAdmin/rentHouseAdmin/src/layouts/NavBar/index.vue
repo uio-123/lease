@@ -69,7 +69,7 @@ export default defineComponent({
   overflow: hidden;
   user-select: none;
   background: $base-color-white;
-  box-shadow: $base-box-shadow;
+  box-shadow: 0 1px 4px rgba(15, 118, 110, 0.06);
 
   .left-panel {
     display: flex;

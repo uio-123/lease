@@ -306,23 +306,23 @@ try {
     )
     foreach ($a in $actors) {
         Add-Box $p $a[0] 1.25 1.45 0.75 $a[1] "#FFFFFF" "#335C81" | Out-Null
-        Add-Line $p ($a[0] + 0.725) 2.0 ($a[0] + 0.725) 6.85 "" $false | Out-Null
+        Add-Line $p ($a[0] + 0.725) 2.0 ($a[0] + 0.725) 7.15 "" $false | Out-Null
     }
     $msgs = @(
-        @(1.38,2.25,2.45,2.25,"提交预约信息"),
-        @(3.08,2.85,4.15,2.85,"POST /appointment"),
-        @(4.78,3.45,5.95,3.45,"校验房间与时间"),
-        @(6.58,4.05,7.65,4.05,"写入预约记录"),
-        @(6.58,4.65,9.25,4.65,"发送提醒"),
-        @(7.65,5.35,2.45,5.35,"返回预约结果")
+        @(1.38,2.65,2.45,2.65,"提交预约信息"),
+        @(3.08,3.35,4.15,3.35,"POST /appointment"),
+        @(4.78,4.05,5.95,4.05,"校验房间与时间"),
+        @(6.58,4.75,7.65,4.75,"写入预约记录"),
+        @(6.58,5.45,9.25,5.45,"发送提醒"),
+        @(7.65,6.35,2.45,6.35,"返回预约结果")
     )
     foreach ($m in $msgs) { Add-Line $p $m[0] $m[1] $m[2] $m[3] | Out-Null }
-    Add-EdgeLabel $p 1.42 1.72 1.25 0.38 "提交预约信息" | Out-Null
-    Add-EdgeLabel $p 3.1 2.32 1.25 0.38 "POST /appointment" | Out-Null
-    Add-EdgeLabel $p 4.85 2.92 1.35 0.38 "校验房间与时间" | Out-Null
-    Add-EdgeLabel $p 6.6 3.52 1.25 0.38 "写入预约记录" | Out-Null
-    Add-EdgeLabel $p 7.55 4.12 1.15 0.38 "发送提醒" | Out-Null
-    Add-EdgeLabel $p 4.6 5.58 1.25 0.38 "返回预约结果" | Out-Null
+    Add-EdgeLabel $p 1.58 2.08 1.35 0.38 "提交预约信息" | Out-Null
+    Add-EdgeLabel $p 3.2 2.68 1.6 0.38 "POST /appointment" | Out-Null
+    Add-EdgeLabel $p 5.0 3.38 1.55 0.38 "校验房间与时间" | Out-Null
+    Add-EdgeLabel $p 6.82 4.08 1.45 0.38 "写入预约记录" | Out-Null
+    Add-EdgeLabel $p 8.55 4.78 1.0 0.38 "发送提醒" | Out-Null
+    Add-EdgeLabel $p 5.08 5.58 1.45 0.38 "返回预约结果" | Out-Null
     Export-Page $p "sequence"
 
     $p = New-Page "state" "租约状态图"
@@ -335,11 +335,11 @@ try {
     )
     foreach ($s in $states) { Add-Box $p $s[0] $s[1] $s[2] $s[3] $s[4] | Out-Null }
     Add-Line $p 2.25 3.5 3.0 3.5 | Out-Null
-    Add-EdgeLabel $p 2.28 2.8 1.0 0.38 "提交合同" | Out-Null
+    Add-EdgeLabel $p 2.28 2.55 1.0 0.38 "提交合同" | Out-Null
     Add-Line $p 4.35 3.5 5.1 3.5 | Out-Null
-    Add-EdgeLabel $p 4.45 2.8 0.75 0.38 "生效" | Out-Null
+    Add-EdgeLabel $p 4.45 2.55 0.75 0.38 "生效" | Out-Null
     Add-Line $p 6.45 3.5 7.2 2.65 | Out-Null
-    Add-EdgeLabel $p 6.82 2.5 0.7 0.38 "到期" | Out-Null
+    Add-EdgeLabel $p 6.02 2.32 0.7 0.38 "到期" | Out-Null
     Add-Line $p 6.45 3.5 7.2 4.45 | Out-Null
     Add-EdgeLabel $p 6.54 4.82 1.1 0.38 "退租/作废" | Out-Null
     Add-Text $p 0.9 2.15 0.65 0.35 "开始" 9 | Out-Null
@@ -396,17 +396,17 @@ try {
     )
     foreach ($e in $entities) { Add-Box $p $e[0] $e[1] 1.75 0.85 $e[2] "#FFFDF7" "#C17C0A" 9 | Out-Null }
     Add-Line $p 1.62 2.3 2.72 3.75 | Out-Null
-    Add-EdgeLabel $p 1.98 3.02 0.7 0.38 "提交" | Out-Null
-    Add-Line $p 3.88 2.3 5.25 1.88 | Out-Null
-    Add-EdgeLabel $p 4.34 2.32 0.7 0.38 "包含" | Out-Null
-    Add-Line $p 6.12 1.88 7.5 1.88 | Out-Null
-    Add-EdgeLabel $p 6.45 1.2 1.0 0.38 "关联图片" | Out-Null
-    Add-Line $p 2.72 4.17 4.1 4.17 | Out-Null
-    Add-EdgeLabel $p 3.0 4.52 1.0 0.38 "生成租约" | Out-Null
+    Add-EdgeLabel $p 2.2 2.38 0.7 0.38 "提交" | Out-Null
+    Add-Line $p 4.75 1.88 5.25 1.88 | Out-Null
+    Add-EdgeLabel $p 4.65 2.35 0.7 0.38 "包含" | Out-Null
+    Add-Line $p 7.0 1.88 7.5 1.88 | Out-Null
+    Add-EdgeLabel $p 6.95 1.02 1.0 0.38 "关联图片" | Out-Null
+    Add-Line $p 3.6 4.17 4.1 4.17 | Out-Null
+    Add-EdgeLabel $p 3.48 4.7 1.0 0.38 "生成租约" | Out-Null
     Add-Line $p 6.12 2.3 7.22 3.75 | Out-Null
-    Add-EdgeLabel $p 6.08 2.88 0.7 0.38 "描述" | Out-Null
+    Add-EdgeLabel $p 5.58 3.1 0.7 0.38 "描述" | Out-Null
     Add-Line $p 0.75 1.88 1.85 4.17 | Out-Null
-    Add-EdgeLabel $p 0.52 3.0 1.0 0.38 "发起预约" | Out-Null
+    Add-EdgeLabel $p 0.12 3.15 1.0 0.38 "发起预约" | Out-Null
     Export-Page $p "er"
 
     Draw-Placeholder "admin_home" "后台管理端：首页截图占位" "后台管理端：首页"
@@ -461,9 +461,9 @@ try {
     Add-Line $p 5.5 4.43 7.15 4.43 | Out-Null
     Add-Line $p 7.98 4.7 7.98 5.05 | Out-Null
     Add-Line $p 7.15 5.33 5.5 6.02 | Out-Null
-    Add-EdgeLabel $p 5.72 4.98 1.0 0.38 "确认租赁" | Out-Null
+    Add-EdgeLabel $p 5.05 4.9 1.0 0.38 "确认租赁" | Out-Null
     Add-Line $p 7.98 5.6 7.98 5.95 | Out-Null
-    Add-EdgeLabel $p 8.35 5.45 0.7 0.38 "取消" | Out-Null
+    Add-EdgeLabel $p 8.75 5.38 0.7 0.38 "取消" | Out-Null
     Export-Page $p "activity"
 
     $p = New-Page "gantt" "项目实施甘特图"

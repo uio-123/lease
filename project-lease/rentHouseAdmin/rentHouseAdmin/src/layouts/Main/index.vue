@@ -1,10 +1,12 @@
 <template>
-  <section class="app-mian-height">
-    <router-view v-slot="{ Component, route }" v-if="isShow" :key="key">
-      <transition appear name="fade-transform" mode="out-in">
-        <component :is="Component" :key="route.path" />
-      </transition>
-    </router-view>
+  <section class="app-main-container">
+    <div class="app-mian-height">
+      <router-view v-slot="{ Component, route }" v-if="isShow" :key="key">
+        <transition appear name="fade-transform" mode="out-in">
+          <component :is="Component" :key="route.path" />
+        </transition>
+      </router-view>
+    </div>
   </section>
 </template>
 
@@ -36,10 +38,14 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-.app-mian-height {
-  min-height: $base-app-main-height;
+.app-main-container {
+  background: #F6FAF9;
+  min-height: 100%;
+}
 
-  // padding: 20px;
-  background-color: inherit;
+.app-mian-height {
+  min-height: calc(100vh - #{$base-nav-bar-height} - #{$base-tabs-bar-height} - 56px - 40px);
+  background: #F6FAF9;
+  padding: 16px;
 }
 </style>

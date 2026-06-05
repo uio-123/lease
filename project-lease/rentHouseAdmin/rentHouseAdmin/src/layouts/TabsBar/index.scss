@@ -64,19 +64,14 @@
     }
 
     .el-tabs__item.is-active {
-      background-color: #e8f4ff;
-      -webkit-mask: url('@/assets/images/tabbar-bg.png');
-      mask: url('@/assets/images/tabbar-bg.png');
-      -webkit-mask-size: 100% 100%;
-      mask-size: 100% 100%;
+      background-color: #ECFEFF;
+      border-left: 3px solid #0F766E;
+      color: #0F766E;
+      font-weight: 600;
     }
 
     .el-tabs__item:not(.is_active):hover {
-      background-color: #f6f8f9;
-      -webkit-mask: url('@/assets/images/tabbar-bg.png');
-      mask: url('@/assets/images/tabbar-bg.png');
-      -webkit-mask-size: 100% 100%;
-      mask-size: 100% 100%;
+      background-color: #F0FDFA;
     }
   }
 }

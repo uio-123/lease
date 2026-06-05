@@ -4,9 +4,9 @@
 
     <el-scrollbar>
       <el-menu
-        background-color="#001529"
-        text-color="hsla(0,0%,100%,.65)"
-        active-text-color="#fff"
+        background-color="#073B3A"
+        text-color="hsla(160, 40%, 85%, 0.75)"
+        active-text-color="#FFFFFF"
         :defaultActive="activeMenu"
         :collapse="collapse"
         :unique-opened="true"
@@ -151,7 +151,7 @@ export default defineComponent({
 
   &.is-active {
     color: $base-color-white;
-    background-color: var(--el-color-primary) !important;
+    background-color: #0F766E !important;
   }
 }
 
@@ -163,8 +163,8 @@ export default defineComponent({
   z-index: $base-z-index;
   width: $base-left-menu-width;
   height: 100vh;
-  background: $base-menu-background;
-  box-shadow: 2px 0 6px rgb(0 21 41 / 35%);
+  background: #073B3A;
+  box-shadow: 2px 0 8px rgba(15, 118, 110, 0.12);
   transition: width $base-transition-time;
 
   &.is-collapse {

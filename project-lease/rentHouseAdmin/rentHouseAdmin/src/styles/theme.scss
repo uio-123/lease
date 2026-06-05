@@ -4,9 +4,9 @@
 /** 自定义黑暗主题 */
 html.dark {
   // * admin
-  --v-bg-color: #141414;
-  --v-main-bg-color: #0d0d0d;
-  --v-border-light: 1px solid #4c4c4d;
+  --v-bg-color: #0D1F1E;
+  --v-main-bg-color: #0A1817;
+  --v-border-light: 1px solid #1A3D3A;
 
   // scroll-bar
   ::-webkit-scrollbar {
@@ -49,8 +49,8 @@ html.dark {
     }
 
     &.is-active {
-      color: #fff !important;
-      background-color: #000 !important;
+      color: #FFFFFF !important;
+      background-color: #0F766E !important;
     }
   }
 

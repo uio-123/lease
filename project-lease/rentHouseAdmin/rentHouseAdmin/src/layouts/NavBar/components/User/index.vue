@@ -1,7 +1,7 @@
 <template>
   <el-dropdown @visible-change="onChange" @command="handleCommand">
     <div class="avatar-dropdown">
-      <img class="user-avatar" :src="avatarUrl || logoPng" alt="" />
+      <img class="user-avatar" :src="avatarUrl || qingyuIcon" alt="" />
       <div class="user-name">{{ name }}</div>
       <el-icon class="up-down">
         <component :is="visible ? 'ArrowUp' : 'ArrowDown'" />
@@ -25,14 +25,13 @@ import { useUserStore } from '@/store/modules/user'
 import { ArrowUp, ArrowDown } from '@element-plus/icons-vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { LOGIN_URL } from '@/config/config'
-import logoPngUrl from '@/assets/images/logo.png'
 export default defineComponent({
   components: {
     ArrowUp,
     ArrowDown,
   },
   setup() {
-    const logoPng = ref(logoPngUrl)
+    const qingyuIcon = ref('/qingyu-admin-icon.svg')
     const router = useRouter()
     const route = useRoute()
     const userStore = useUserStore()
@@ -63,7 +62,7 @@ export default defineComponent({
       })
     }
     return {
-      logoPng,
+      qingyuIcon,
       name,
       avatarUrl,
       visible,

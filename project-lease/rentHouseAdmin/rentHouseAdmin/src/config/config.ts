@@ -7,7 +7,7 @@ export const HOME_URL = '/index'
 export const LOGIN_URL = '/login'
 
 // * 默认主题颜色
-export const DEFAULT_PRIMARY = '#409EFF'
+export const DEFAULT_PRIMARY = '#0F766E'
 
 // * 路由白名单地址（必须是本地存在的路由 staticRouter.ts）
 export const ROUTER_WHITE_LIST: string[] = ['/404']

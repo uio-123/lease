@@ -1,0 +1,32 @@
+// 青寓运营后台 Design Tokens
+:root {
+  --qy-primary: #0F766E;
+  --qy-secondary: #14B8A6;
+  --qy-cta: #0369A1;
+  --qy-bg: #F6FAF9;
+  --qy-surface: #FFFFFF;
+  --qy-text: #134E4A;
+  --qy-muted: #64748B;
+  --qy-border: #D6F5EF;
+  --qy-sidebar: #073B3A;
+  --qy-sidebar-hover: #0A5C51;
+  --qy-sidebar-active: #0F766E;
+  --qy-table-header-bg: #ECFEFF;
+  --qy-shadow: 0 2px 8px rgba(15, 118, 110, 0.08);
+  --qy-shadow-card: 0 1px 4px rgba(15, 118, 110, 0.06);
+}
+
+html.dark {
+  --qy-primary: #5EEAD4;
+  --qy-secondary: #2DD4BF;
+  --qy-cta: #38BDF8;
+  --qy-bg: #0D1F1E;
+  --qy-surface: #0A1817;
+  --qy-text: #ECFEFF;
+  --qy-muted: #A7F3D0;
+  --qy-border: #1A3D3A;
+  --qy-sidebar: #071716;
+  --qy-table-header-bg: #1A3D3A;
+  --qy-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  --qy-shadow-card: 0 1px 4px rgba(0, 0, 0, 0.15);
+}

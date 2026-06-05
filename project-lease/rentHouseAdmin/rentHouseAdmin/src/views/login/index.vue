@@ -1,181 +1,159 @@
 <template>
-  <div class="login-container">
-    <el-alert
-      v-show="false"
-      :title="getEnvByName('VITE_APP_TITLE')"
-      type="success"
-      :closable="false"
-      style="position: fixed"
-    ></el-alert>
-    <el-row>
-      <el-col :xs="24" :sm="24" :md="12" :lg="14" :xl="14">
-        <div style="color: transparent">左侧区域占位符</div>
-      </el-col>
-      <el-col :xs="24" :sm="24" :md="12" :lg="10" :xl="10">
-        <el-form
-          ref="ruleFormRef"
-          :model="ruleForm"
-          status-icon
-          :rules="rules"
-          class="login-form"
-        >
-          <div class="form-header">
-            <div class="title">hello !</div>
-            <div class="title-tips">
-              欢迎来到{{ getEnvByName('VITE_APP_TITLE') }}！
-            </div>
-          </div>
-          <el-form-item prop="username">
-            <el-input
-              v-model.trim="ruleForm.username"
-              :prefix-icon="User"
-              autocomplete="off"
-              placeholder="请输入用户名"
-            />
-          </el-form-item>
-          <el-form-item prop="password">
-            <el-input
-              v-model.trim="ruleForm.password"
-              type="password"
-              show-password
-              :prefix-icon="Lock"
-              autocomplete="off"
-              placeholder="请输入密码"
-            />
-          </el-form-item>
-          <el-form-item prop="captchaCode">
-            <el-row>
-              <el-col :span="15">
-                <el-input
-                  v-model.trim="ruleForm.captchaCode"
-                  autocomplete="off"
-                  placeholder="请输入验证码"
-                />
-              </el-col>
-              <el-col :span="8" :offset="1">
-                <el-image
-                  fit="contain"
-                  style="height: 100%; background: white"
-                  class="pointer"
-                  :src="captcha.image"
-                  @click="getCaptcha"
-                />
-              </el-col>
-            </el-row>
-          </el-form-item>
-          <el-form-item>
-            <el-button
-              class="login-btn"
-              type="primary"
-              size="large"
-              :loading="loading"
-              @click="submitForm(ruleFormRef)"
-            >
-              登陆
-            </el-button>
-          </el-form-item>
-        </el-form>
-      </el-col>
-    </el-row>
+  <div class="qingyu-login">
+    <div class="login-card">
+      <div class="login-header">
+        <svg-icon name="qingyu-logo" size="40px" style="color: #0F766E" />
+        <h1 class="login-title">青寓运营后台</h1>
+        <p class="login-desc">公寓运营管理系统</p>
+      </div>
+      <el-form ref="loginFormRef" :model="loginForm" :rules="rules" size="large">
+        <el-form-item prop="username">
+          <el-input v-model="loginForm.username" placeholder="请输入账号" :prefix-icon="User" />
+        </el-form-item>
+        <el-form-item prop="password">
+          <el-input v-model="loginForm.password" type="password" placeholder="请输入密码" :prefix-icon="Lock" show-password />
+        </el-form-item>
+        <el-form-item prop="captchaCode">
+          <el-row :gutter="10" style="width: 100%">
+            <el-col :span="14">
+              <el-input
+                v-model="loginForm.captchaCode"
+                placeholder="请输入验证码"
+                :prefix-icon="Key"
+                maxlength="4"
+              />
+            </el-col>
+            <el-col :span="10">
+              <img :src="codeUrl" class="login-code" @click="getCodeHandle" alt="验证码" />
+            </el-col>
+          </el-row>
+        </el-form-item>
+      </el-form>
+      <el-button type="primary" size="large" class="login-btn" @click="onSubmitHandle">登 录</el-button>
+      <p class="login-footer">默认账号：user / 123456</p>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, reactive, ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useUserStore } from '@/store/modules/user'
-import type { FormInstance } from 'element-plus'
-import { User, Lock } from '@element-plus/icons-vue'
-import { ElNotification } from 'element-plus'
-import { HOME_URL } from '@/config/config'
-import { timeFix } from '@/utils/index'
 import { getCode, getUserInfo, login } from '@/api/user'
-import { getEnvByName } from '@/utils/getEnv'
+import { User, Lock, Key } from '@element-plus/icons-vue'
+import type { FormInstance } from 'element-plus'
+
 const router = useRouter()
 const route = useRoute()
-const ruleFormRef = ref<FormInstance>()
 const userStore = useUserStore()
-const ruleForm = reactive({
+const loginFormRef = ref<FormInstance>()
+const codeUrl = ref('')
+const captchaKey = ref('')
+
+const loginForm = ref({
   username: 'user',
   password: '123456',
-  captchaKey: '',
-  captchaCode: '',
+  captchaCode: '0000',
 })
-const loading = ref(false)
-const validateUsername = (rule: any, value: string, callback: any) => {
-  if (value === '') {
-    callback(new Error('用户名不能为空'))
-  } else if (value.length < 4) {
-    callback(new Error('用户名长度不能小于4位'))
-  } else {
-    callback()
-  }
+
+const rules = {
+  username: [{ required: true, message: '请输入账号', trigger: 'blur' }],
+  password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
+  captchaCode: [{ required: true, message: '请输入验证码', trigger: 'blur' }],
 }
 
-const validatePassword = (rule: any, value: string, callback: any) => {
-  if (value === '') {
-    callback(new Error('密码不能为空'))
-  } else if (value.length < 6) {
-    callback(new Error('密码长度不能小于6位'))
-  } else {
-    callback()
-  }
-}
-const validateCaptchaCode = (rule: any, value: string, callback: any) => {
-  if (value === '') {
-    callback(new Error('验证码不能为空'))
-  } else {
-    callback()
-  }
-}
-const rules = reactive({
-  username: [{ required: true, validator: validateUsername }],
-  password: [{ required: true, validator: validatePassword }],
-  captchaCode: [{ required: true, validator: validateCaptchaCode }],
-})
-// 验证码数据
-const captcha = ref({
-  image: '',
-  key: '',
-})
-// 获取验证码
-const getCaptcha = async () => {
+const getCodeHandle = async () => {
   try {
-    const { data } = await getCode()
-    captcha.value = data
-    ruleForm.captchaKey = data.key
-  } catch (error) {
-    console.log(error)
-  }
+    const res = await getCode()
+    codeUrl.value = res.data.image
+    captchaKey.value = res.data.key
+  } catch (_) {}
 }
-const submitForm = (formEl: FormInstance | undefined) => {
-  if (!formEl) return
-  formEl.validate(async (valid) => {
-    if (!valid) return
-    try {
-      loading.value = true
-      const { data } = await login(ruleForm)
-      userStore.setToken(data)
-      router.replace((route.query.redirect as string) || HOME_URL)
 
-      const userInfo = await getUserInfo()
-      userStore.setUserInfo(userInfo.data)
-
-      ElNotification({
-        title: `hi,${timeFix()}!`,
-        message: `欢迎回来`,
-        type: 'success',
-      })
-    } finally {
-      loading.value = false
-    }
-  })
+const onSubmitHandle = async () => {
+  const valid = await loginFormRef.value?.validate().catch(() => false)
+  if (!valid) return
+  try {
+    const tokenRes = await login({
+      username: loginForm.value.username,
+      password: loginForm.value.password,
+      captchaCode: loginForm.value.captchaCode,
+      captchaKey: captchaKey.value,
+    })
+    userStore.setToken(tokenRes.data)
+    const userInfoRes = await getUserInfo()
+    userStore.setUserInfo(userInfoRes.data)
+    await router.replace(route.query.redirect ? decodeURIComponent(route.query.redirect as string) : '/')
+  } catch (_) {}
 }
-onMounted(() => {
-  getCaptcha()
-})
+
+onMounted(() => { getCodeHandle() })
 </script>
 
-<style scoped lang="scss">
-@import './index';
+<style lang="scss" scoped>
+.qingyu-login {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #F0FDFA 0%, #ECFEFF 50%, #E0F2FE 100%);
+}
+
+.login-card {
+  width: 420px;
+  max-width: 90vw;
+  padding: 40px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(15, 118, 110, 0.1);
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.login-title {
+  margin: 12px 0 4px;
+  font-size: 24px;
+  font-weight: 800;
+  color: #134E4A;
+}
+
+.login-desc {
+  margin: 0;
+  font-size: 14px;
+  color: #64748B;
+}
+
+.login-code {
+  width: 100%;
+  height: 40px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid #D6F5EF;
+}
+
+.login-btn {
+  width: 100%;
+  margin-top: 24px;
+  height: 44px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 8px;
+  background-color: #0F766E;
+  border-color: #0F766E;
+
+  &:hover {
+    background-color: #0D6B63;
+    border-color: #0D6B63;
+  }
+}
+
+.login-footer {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 12px;
+  color: #94A3B8;
+}
 </style>

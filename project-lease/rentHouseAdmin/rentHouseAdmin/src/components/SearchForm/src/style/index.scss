@@ -1,9 +1,25 @@
 .table-search {
-  padding-bottom: 0 !important;
-  margin-bottom: 20px;
+  padding-bottom: 16px !important;
+  margin-bottom: 16px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 4px rgba(15, 118, 110, 0.06);
 
   .operation {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+  }
+
+  :deep(.el-button--primary) {
+    background-color: #0369A1;
+    border-color: #0369A1;
+  }
+
+  :deep(.el-button--primary:hover) {
+    background-color: #0284C7;
+    border-color: #0284C7;
   }
 }

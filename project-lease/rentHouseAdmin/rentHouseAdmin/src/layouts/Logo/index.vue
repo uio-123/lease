@@ -1,7 +1,7 @@
 <template>
   <div class="logo-container flex-center">
     <a href="/">
-      <img class="logo" alt="logo" :src="logoPng"/>
+      <svg-icon name="qingyu-logo" size="32px" style="flex-shrink: 0; color: #14B8A6;" />
       <h1 class="title" v-if="!collapse">
         {{ getEnvByName('VITE_APP_TITLE') }}
       </h1>
@@ -10,17 +10,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref } from 'vue'
+import { defineComponent, computed } from 'vue'
 import { useSettingsStore } from '@/store/modules/settings'
 import { getEnvByName } from '@/utils/getEnv'
-import logoPngUrl from '@/assets/images/logo.png'
 export default defineComponent({
   methods: { getEnvByName },
   setup() {
     const settingsStore = useSettingsStore()
     const collapse = computed(() => settingsStore.collapse)
-    const logoPng = ref(logoPngUrl)
-    return { logoPng, collapse }
+    return { collapse }
   },
 })
 </script>
@@ -45,14 +43,6 @@ export default defineComponent({
     font-weight: 600;
     color: #fff;
     vertical-align: middle;
-  }
-
-  .logo {
-    display: inline-block;
-    width: 32px;
-    height: 32px;
-    vertical-align: middle;
-    border-radius: 50%;
   }
 }
 </style>

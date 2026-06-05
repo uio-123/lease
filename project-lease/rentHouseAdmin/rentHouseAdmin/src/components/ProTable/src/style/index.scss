@@ -1,32 +1,53 @@
+@import '@/styles/variable';
+
 .card {
   padding: 20px;
   background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(15, 118, 110, 0.06);
 
   .table-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #D6F5EF;
+  }
 
-    :deep(.el-icon) {
-      margin-left: 12px;
-      cursor: pointer;
+  .table-header .header-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #134E4A;
+  }
+
+  :deep(.el-table) {
+    th.el-table__cell {
+      background-color: #ECFEFF !important;
+      color: #0F766E;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .el-table__row:hover > td {
+      background-color: #F0FDFA !important;
     }
   }
 
-  .header-right {
+  :deep(.el-pagination) {
     display: flex;
-    align-items: center;
+    justify-content: flex-end;
+    margin-top: 20px;
+
+    button.is-active {
+      background-color: #0F766E !important;
+      border-color: #0F766E !important;
+    }
   }
 
   .pagination {
     display: flex;
     justify-content: flex-end;
     margin-top: 20px;
-  }
-
-  .table-empty {
-    padding-top: 20px;
   }
 }
