@@ -15,9 +15,11 @@
     <template #thumb>
       <van-image
         class="w-full h-full object-cover"
-        :src="data.graphVoList?.[0]?.url || '失败'"
+        :src="data.graphVoList?.[0]?.url || placeholderImg"
       >
-        <template v-slot:error>加载失败</template>
+        <template v-slot:error>
+          <img :src="placeholderImg" class="w-full h-full object-cover" />
+        </template>
         <template v-slot:loading>
           <van-loading type="spinner" size="20" />
         </template>
@@ -40,6 +42,7 @@
 import type { ApartmentInterface } from "@/api/search/types";
 import type { PropType } from "vue";
 import { useRouter } from "vue-router";
+import placeholderImg from "@/assets/placeholder.svg";
 const router = useRouter();
 
 const props = defineProps({

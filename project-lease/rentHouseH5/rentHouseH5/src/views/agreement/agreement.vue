@@ -17,10 +17,12 @@
               <van-image
                 class="w-full h-full object-cover"
                 :src="
-                  agreementDetailInfo.apartmentGraphVoList?.[0]?.url || '失败'
+                  agreementDetailInfo.apartmentGraphVoList?.[0]?.url || placeholderImg
                 "
               >
-                <template v-slot:error>加载失败</template>
+                <template v-slot:error>
+          <img :src="placeholderImg" class="w-full h-full object-cover" />
+        </template>
                 <template v-slot:loading>
                   <van-loading type="spinner" size="20" />
                 </template>
@@ -44,9 +46,11 @@
             <template #thumb>
               <van-image
                 class="w-full h-full object-cover"
-                :src="agreementDetailInfo.roomGraphVoList?.[0]?.url || '失败'"
+                :src="agreementDetailInfo.roomGraphVoList?.[0]?.url || placeholderImg"
               >
-                <template v-slot:error>加载失败</template>
+                <template v-slot:error>
+          <img :src="placeholderImg" class="w-full h-full object-cover" />
+        </template>
                 <template v-slot:loading>
                   <van-loading type="spinner" size="20" />
                 </template>
@@ -216,6 +220,7 @@ import type {
   TermInfoInterface
 } from "@/api/search/types";
 import { useRoute, useRouter } from "vue-router";
+import placeholderImg from "@/assets/placeholder.svg";
 import { showToast } from "vant";
 import {
   getAgreementDetailById,

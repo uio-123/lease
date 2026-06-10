@@ -7,8 +7,10 @@
           v-for="item in apartmentDetailInfo.graphVoList"
           :key="item.url"
         >
-          <van-image fit="fill" :src="item.url" width="100vw" height="35vh">
-            <template v-slot:error>加载失败</template>
+          <van-image fit="fill" :src="item.url || placeholderImg" width="100vw" height="35vh">
+            <template v-slot:error>
+          <img :src="placeholderImg" class="w-full h-full object-cover" />
+        </template>
             <template v-slot:loading>
               <van-loading type="spinner" size="20" />
             </template>
@@ -124,6 +126,7 @@ import PullDownRefreshContainer from "@/components/PullDownRefreshContainer/Pull
 import type { ReqPage } from "@/api/types";
 import type { RoomInterface } from "@/api/search/types";
 import { useRouter, useRoute } from "vue-router";
+import placeholderImg from "@/assets/placeholder.svg";
 const router = useRouter();
 const route = useRoute();
 // 公寓的详情信息

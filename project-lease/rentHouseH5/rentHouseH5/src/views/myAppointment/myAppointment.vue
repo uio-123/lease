@@ -15,9 +15,11 @@
         <template #thumb>
           <van-image
             class="w-full h-full object-cover"
-            :src="item.graphVoList?.[0]?.url || '失败'"
+            :src="item.graphVoList?.[0]?.url || placeholderImg"
           >
-            <template v-slot:error>加载失败</template>
+            <template v-slot:error>
+          <img :src="placeholderImg" class="w-full h-full object-cover" />
+        </template>
             <template v-slot:loading>
               <van-loading type="spinner" size="20" />
             </template>
@@ -56,6 +58,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
+import placeholderImg from "@/assets/placeholder.svg";
 import type { AppointmentItemInterface } from "@/api/search/types";
 import { getMyAppointmentList } from "@/api/search";
 import {
