@@ -518,9 +518,11 @@ finally {
 
 
 def run_visio_export() -> None:
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
-    for old_png in OUT_DIR.glob("*.png"):
-        old_png.unlink()
+    OUT_DIR.parent.mkdir(parents=True, exist_ok=True)
+    temp_out_dir = OUT_DIR.parent / f"{OUT_DIR.name}_tmp"
+    if temp_out_dir.exists():
+        shutil.rmtree(temp_out_dir)
+    temp_out_dir.mkdir(parents=True, exist_ok=True)
 
     with tempfile.NamedTemporaryFile(
         "w",
@@ -542,7 +544,7 @@ def run_visio_export() -> None:
                 "-File",
                 str(ps1_path),
                 "-OutDir",
-                str(OUT_DIR),
+                str(temp_out_dir),
                 "-VsdxPath",
                 str(VSDX_PATH),
             ],
@@ -556,8 +558,18 @@ def run_visio_export() -> None:
             print(result.stderr, end="")
         if result.returncode != 0:
             raise RuntimeError(f"Visio export failed with exit code {result.returncode}")
+        exported = sorted(temp_out_dir.glob("*.png"))
+        if len(exported) != len(IMAGE_ORDER):
+            raise RuntimeError(
+                f"Expected {len(IMAGE_ORDER)} PNGs, found {len(exported)}"
+            )
+        if OUT_DIR.exists():
+            shutil.rmtree(OUT_DIR)
+        temp_out_dir.replace(OUT_DIR)
     finally:
         ps1_path.unlink(missing_ok=True)
+        if temp_out_dir.exists():
+            shutil.rmtree(temp_out_dir)
 
 
 def replace_report_images() -> None:
